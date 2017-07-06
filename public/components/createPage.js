@@ -20,8 +20,6 @@ angular.module('flash-card')
 
 
 
-
-
   this.getCardType = function() {
     //This returns a copy of the string so it cannot be mutated
     return this._cardType.split('').slice().join('');
@@ -48,7 +46,22 @@ angular.module('flash-card')
     this.typeSelected = true;
   };
 
+  this.populateCard = function (cardtype,dataObj) {
+    console.log('populateCard was called in createPage.js')
+    if(cardtype === 'basic') {
+      if(!dataObj.front || !dataObj.back) {
+        alert("Please fill out a card");
+        return;
+      } else {
+        this.newCard.front = dataObj.front;
+        this.newCard.back = dataObj.back;
+      }
+    }
+    this.addCard(this.newCard);
+  }.bind(this);
+
   this.addCard = function(newCard) {
+    console.log('addCard was called on createPage.js');
     if(!newCard.front || !newCard.back) {
       alert("Please fill out a card");
     } else {

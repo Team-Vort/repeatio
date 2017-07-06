@@ -15,7 +15,6 @@
 
   <!-- Main Section is hidden until card type is selected. -->
 
-  <!-- ng-show="create.typeSelected" -->
   <div class="create-main-section" ng-show="create.typeSelected">
     <h3>DECK NAME: <input placeholder="Enter a deck name" ng-model="create.newDeck.deckname" required /></h3>
 
@@ -23,7 +22,7 @@
 
     <!-- All card types -->
     <div class="card-type-div" ng-show="create.getCardType() === 'basic'">
-      <card-basic />
+      <card-basic populate-card="create.populateCard"/>
     </div>
 
     <div class="card-type-div" ng-show="create.getCardType() === 'image'">
@@ -45,7 +44,9 @@
     <!-- End of CARD TYPES -->
 
 
-      <button class="btn btn-primary" ng-click="create.addCard(create.newCard)">Add card</button>
+    <!-- Moved add card button to each card type controller -->
+
+    <!--   <button class="btn btn-primary" ng-click="create.addCard(create.newCard)">Add card</button> -->
 
       <hr> <!-- Start of list of currently made cards -->
 

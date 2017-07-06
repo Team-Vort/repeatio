@@ -3,7 +3,7 @@ angular.module('flash-card')
 
 })
 
-.component('cardImage', {
+.component('cardShortAnswer', {
   controller: 'CardShortAnswerCtrl',
   bindings: {
 
