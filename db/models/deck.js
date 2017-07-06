@@ -7,6 +7,7 @@ var db = require('../config');
 var DeckSchema = new Schema({
   deckname: String,
   username: String,
+  groupname: String,
   public: {
     type: Boolean,
     default: false
