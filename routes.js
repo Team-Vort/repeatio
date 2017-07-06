@@ -42,6 +42,7 @@ router.post('/decks', function(req, res) {
 router.put('/decks/', function(req, res) {
   var username = req.body.username;
   var deckname = req.body.deckname;
+  // var groupname = req.body.groupname;
   console.log(username);
   console.log(deckname);
 
