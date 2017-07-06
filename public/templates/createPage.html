@@ -3,44 +3,46 @@
   <div class="container">
 
   <!-- Buttons to select card type -->
-  <select-card-type ng-show="!create.typeSelected" set-card-type="create.setCardType"/>
+<!--   <ng-include src="selectCardType.html">
+  </ng-include> -->
+  <div ng-show="!create.typeSelected">
+    <select-card-type ng-show="!create.typeSelected" set-card-type="create.setCardType"/>
+  </div>
+
+
+
 
 
   <!-- Main Section is hidden until card type is selected. -->
 
   <!-- ng-show="create.typeSelected" -->
-  <div class="create-main-section">
+  <div class="create-main-section" ng-show="create.typeSelected">
     <h3>DECK NAME: <input placeholder="Enter a deck name" ng-model="create.newDeck.deckname" required /></h3>
 
     <h3>GROUP NAME: <input placeholder="Enter a group name" ng-model="create.newDeck.groupname" required /></h3>
 
-
-    <div class="row">
-      <div class="col-xs-5 flashcard">
-        <h4>Question</h4>
-        <hr>
-        <textarea placeholder="Enter a question" ng-model="create.newCard.front" id="createQuestionField"></textarea>
-
-        <!-- Multiple choice section -->
-        <div class="card-mc-section" ng-show="create.getCardType() ==='multiple choice'">
-          <div class="row">
-
-              <div class="input-group">
-                <span class="input-group-addon">
-                  <input type="checkbox" aria-label="...">
-                </span>
-                <input type="text" class="form-control" aria-label="...">
-              </div><!-- /input-group -->
-          </div>
-      </div>
+    <!-- All card types -->
+    <div class="card-type-div" ng-show="create.getCardType() === 'basic'">
+      <card-basic />
     </div>
 
-      <div class="col-xs-5 flashcard">
-        <h4>Answer</h4>
-        <hr>
-        <textarea placeholder="Enter the answer" ng-show="create.getCardType() ==='basic';" ng-keyup="$event.keyCode == 13 && create.addCard(create.newCard)" ng-model="create.newCard.back"></textarea>
-      </div>
+    <div class="card-type-div" ng-show="create.getCardType() === 'image'">
+      <card-image />
     </div>
+
+    <div class="card-type-div" ng-show="create.getCardType() === 'multiple choice'">
+      <card-multiple-choice />
+    </div>
+
+    <div class="card-type-div" ng-show="create.getCardType() === 'short answer'">
+      <card-short-answer />
+    </div>
+
+    <div class="card-type-div" ng-show="create.getCardType() === 'true/false'">
+      <card-true-false />
+    </div>
+
+    <!-- End of CARD TYPES -->
 
 
       <button class="btn btn-primary" ng-click="create.addCard(create.newCard)">Add card</button>
