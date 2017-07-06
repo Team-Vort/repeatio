@@ -1,1 +1,5 @@
 /*andrew */
+
+.deck-list-entry {
+  cursor: pointer;
+}
