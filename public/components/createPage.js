@@ -1,10 +1,51 @@
 angular.module('flash-card')
 .controller('CreatePageCtrl', function($http, $location){
   var currentUser = localStorage.getItem('currentUser');
+  this.typeSelected = false;
   this.newDeck = {username: currentUser};
   this.newDeck.cards = [];
   this.newCard = {plaintextFront: true, plaintextBack: true};
+  this._cardType = "basic";
+  //Do not modify _cardType directly, use getters and setters.
+  /* Card types:
+    "basic" - just text on front and back, no way to enter an answer
+    "image" - flashcard with embedded image. no way to enter an answer
+    "multiple choice" - flashcard with up to 5 answer options and only one correct answer
+    "true/false" - flashcard with a binary true/false answer
+    "short answer" - flashcard with textbox for answers.
 
+    For basic, image, and short answer cards, the user must self-grade.  Multiple choice and true/false answers are automatically graded.
+
+  */
+
+
+
+
+
+  this.getCardType = function() {
+    //This returns a copy of the string so it cannot be mutated
+    return this._cardType.split('').slice().join('');
+  };
+
+  this.setCardType = function(s) {
+    s = s.toLowerCase();
+    var validTypes = "basic,image,multiple choice, true/false, short answer";
+
+    //only set type if valid
+    if (validTypes.includes(s)) {
+      this._cardType = s;
+      //toggle typeSelected to show correct HTML using ng-show
+      this._typeSelcted();
+      return 1;
+    } else {
+      //error handling- return -1 if invalid string passed
+      return -1;
+    }
+  };
+
+  this._typeSelcted = function() {
+    this.typeSelected = true;
+  };
 
   this.addCard = function(newCard) {
     if(!newCard.front || !newCard.back) {
