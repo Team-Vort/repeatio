@@ -29,6 +29,7 @@ angular.module('flash-card')
 
   this.setCardType = function(s) {
     s = s.toLowerCase();
+    console.log('setCardType string: ',s);
     var validTypes = "basic,image,multiple choice, true/false, short answer";
 
     //only set type if valid
@@ -41,7 +42,7 @@ angular.module('flash-card')
       //error handling- return -1 if invalid string passed
       return -1;
     }
-  };
+  }.bind(this);
 
   this._typeSelcted = function() {
     this.typeSelected = true;

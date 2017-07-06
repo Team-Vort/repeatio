@@ -2,42 +2,14 @@
 
   <div class="container">
 
-  <!-- Select card type section  -->
-  <div class = "row" ng-show="!create.typeSelected">
-    <div class="col-md-4">
-    </div>
-    <div class="col-md-4">
-      <div class="panel panel-default">
-        <div class="panel-heading panel-default text-center">Select a Card Type</div>
-          <div class="panel-body text-center">
-            <div class="row">
-              <div class="btn btn-primary btn-lg x-btn-card-type" ng-click="create.setCardType('basic')">Basic</div>
-            </div>
-            <div class="row">
-              <div class="btn btn-primary btn-lg x-btn-card-type" ng-click="create.setCardType('image')">Image</div>
-            </div>
-            <div class="row">
-              <div class="btn btn-primary btn-lg x-btn-card-type" ng-click="create.setCardType('multiple choice')">Multiple Choice
-              </div>
-            </div>
-            <div class="row">
-              <div class="btn btn-primary btn-lg x-btn-card-type" ng-click="create.setCardType('true/false')">True/False</div>
-            </div>
-            <div class="row">
-              <div class="btn btn-primary btn-lg x-btn-card-type" ng-click="create.setCardType('short answer')">Short Answer</div>
-            </div>
-          </div>
-
-      </div>
-      <!-- END OF Select card type section -->
-    </div>
-    <div class="col-md-4">
-    </div>
-  </div>
+  <!-- Buttons to select card type -->
+  <select-card-type ng-show="!create.typeSelected" set-card-type="create.setCardType"/>
 
 
   <!-- Main Section is hidden until card type is selected. -->
-  <div class="create-main-section" ng-show="create.typeSelected">
+
+  <!-- ng-show="create.typeSelected" -->
+  <div class="create-main-section">
     <h3>DECK NAME: <input placeholder="Enter a deck name" ng-model="create.newDeck.deckname" required /></h3>
 
     <h3>GROUP NAME: <input placeholder="Enter a group name" ng-model="create.newDeck.groupname" required /></h3>
