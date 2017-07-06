@@ -2,9 +2,18 @@ angular.module('flash-card')
 .controller('AppCtrl', function($http, $timeout) {
   var that = this;
   var currentUser = localStorage.getItem('currentUser');
+  // adding this.getGroups
+  console.log("THIS", localStorage.getItem('decks'));
+  // console.log("THIS IS LOCALSTORAGE: ", localStorage);
+  this.getGroups = function() {
+    that.groups = [];
+    // for (var i = 0; i<)
+  }
+
   this.setDecks = function() {
       that.decks = JSON.parse(localStorage.getItem('decks'));
       console.log('setDecks called. this.decks: ', that.decks);
+
   };
   this.getDeck = function(deck){
     localStorage.setItem('currentDeck', JSON.stringify(deck));
@@ -41,3 +50,6 @@ angular.module('flash-card')
   controller: 'AppCtrl',
   templateUrl: './templates/app.html',
 });
+
+
+// [{"_id":"595d9d3a063adb09b45b2850","username":"Andrew","deckname":"United States","groupname":"Geography","__v":0,"cards":[{"front":"What is the biggest state by land area?","back":"Alaska.","_id":"595d9d3a063adb09b45b2851","lang":"Javascript","plaintextBack":true,"plaintextFront":true}],"public":false},{"_id":"595d9d693ebfb7469466311a","username":"Andrew","deckname":"Canada","groupname":"Geography","__v":0,"cards":[{"front":"What is the biggest province by population?","back":"Ontario at 13 million.","_id":"595d9d693ebfb7469466311b","lang":"Javascript","plaintextBack":true,"plaintextFront":true}],"public":false}]
