@@ -1,11 +1,11 @@
 angular.module('flash-card')
 .controller('CreatePageCtrl', function($http, $location){
   var currentUser = localStorage.getItem('currentUser');
-  this.typeSelected = false;
   this.newDeck = {username: currentUser};
   this.newDeck.cards = [];
   this.newCard = {plaintextFront: true, plaintextBack: true};
   this._cardType = "basic";
+  this.typeSelected = false;
   //Do not modify _cardType directly, use getters and setters.
   /* Card types:
     "basic" - just text on front and back, no way to enter an answer
