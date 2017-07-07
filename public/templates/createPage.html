@@ -16,9 +16,9 @@
   <!-- Main Section is hidden until card type is selected. -->
 
   <div class="create-main-section" ng-show="create.typeSelected">
-    <h3>DECK NAME: <input placeholder="Enter a deck name" ng-model="create.newDeck.deckname" required /></h3>
+    <h4>DECK NAME:  </h4><span>  <input class="create-type" placeholder="Enter a deck name" ng-model="create.newDeck.deckname" required />
 
-    <h3>GROUP NAME: <input placeholder="Enter a group name" ng-model="create.newDeck.groupname" required /></h3>
+    <h4>CATEGORY:</h4> <span> <input class="create-type" placeholder="Enter category" ng-model="create.newDeck.groupname" required /> </span>
 
     <!-- All card types -->
     <div class="card-type-div" >
@@ -46,6 +46,7 @@
     <!-- Moved add card button to each card type controller -->
 
     <!--   <button class="btn btn-primary" ng-click="create.addCard(create.newCard)">Add card</button> -->
+
 
       <hr> <!-- Start of list of currently made cards -->
 
@@ -80,13 +81,13 @@
             <h4>Question</h4>
 
             <div class="codeToggleBtn">
-              <button ng-click="create.toggleHighlightFront(card)" ng-class="{'btn': card.plaintextFront, 'btn btn-primary': !card.plaintextFront}">
+              <button ng-click="create.toggleHighlightFront(card)" ng-class="{'btn': card.plaintextFront, 'btn btn-success': !card.plaintextFront}">
                 <span class="fa fa-code"></span>
               </button>
             </div>
 
             <hr>
-            <textarea placeholder="Enter a question" ng-model="card.front" ></textarea>
+            <textarea placeholder=" Enter a question" ng-model="card.front" ></textarea>
           </div>
 
           <div class="col-xs-5 flashcard">
@@ -99,7 +100,7 @@
             </div>
 
             <hr>
-            <textarea placeholder="Enter the answer" ng-model="card.back"></textarea>
+            <textarea placeholder=" Enter the answer" ng-model="card.back"></textarea>
           </div>
         </div> -->
 
@@ -110,7 +111,7 @@
 
       </div> <!-- end ng-repeat div -->
 
-      <button class="btn btn-primary savedeckbtn" type="button" ng-click="create.handleSave()">Save the deck</button>
+      <button class="btn btn-success savedeckbtn" type="button" ng-click="create.handleSave()">Save the deck</button>
     </div>
   </div>
 </div>
