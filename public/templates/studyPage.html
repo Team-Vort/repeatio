@@ -1,5 +1,7 @@
 <div ng-controller="StudyCtrl as study">
-
+  <div>
+    <progress-tracker />
+  </div>
   <div class="flip">
     <div class="card panel panel-default" ng-class="{'flipped':study.flipped}" ng-click="study.handleFlip()">
       <div class="studycard face front panel-body" ng-if="study.front"><h3>{{ study.current.front }}</h3></div>
