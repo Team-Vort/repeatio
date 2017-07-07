@@ -8,6 +8,7 @@ var DeckSchema = new Schema({
   deckname: String,
   username: String,
   groupname: String,
+  cardType: String,
   public: {
     type: Boolean,
     default: false

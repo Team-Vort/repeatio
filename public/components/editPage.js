@@ -4,14 +4,73 @@ angular.module('flash-card')
   this.newCard = {plaintextFront: true, plaintextBack: true};
   //***** add more of the default schema ****
   this.deck = JSON.parse(localStorage.getItem('currentDeck'));
-  this.addCard = function(newCard) {
-    if(!newCard.front || !newCard.back) {
-      alert("Please fill out a card");
-    } else {
-      this.deck.cards.push(this.newCard);
-      this.newCard = {plaintextFront: true, plaintextBack: true};
-      $('#editQuestionField').focus();
+
+  this.defaultCardData = {
+    multipleChoice: {
+      question: 'Enter A question here',
+      answer: 'Enter the message to be displayed for a correct answer here.',
+      correctOption: 'a',
+      options: {
+        a: 'foo',
+        b: 'bar',
+        c: 'this = that',
+        d: '0/0',
+        e: 'NaN == NaN'
+      }
     }
+  };
+
+
+   // ------ Copied from createPage to get things working
+   // NOT DRY - TODO: refactor ---------------
+
+  this.populateCard = function (dataObj) {
+    console.log('populateCard was called in createPage.js')
+    if(this.deck.cardType === 'basic') {
+      if(!dataObj.question || !dataObj.answer) {
+        alert("Please fill out a card");
+        return;
+      } else {
+        this.newCard.data = {};
+        this.newCard.data['question'] = dataObj['question'];
+        this.newCard.data['answer'] = dataObj['answer'];
+
+        this.newCard.data.front = dataObj.front;
+        this.newCard.data.back = dataObj.back;
+      }
+    }
+
+    if(this.deck.cardType === 'multiple choice') {
+      if(!dataObj.answer || !dataObj.question) {
+        alert("Please fill out required fields");
+        return;
+      } else {
+
+        //Make a copy of the object
+        this.newCard.data = {};
+        var tempOptions = {};
+        for (var j in dataObj.options) {
+          tempOptions[j] = dataObj.options[j];
+        }
+        this.newCard.data.options = tempOptions;
+        for (var k in dataObj) {
+          if (k !== 'options') {
+            this.newCard.data[k] = dataObj[k];
+          }
+        }
+        console.log('multiple choice card about to be added to deck: ', this.newCard);
+      }
+    }
+    this.addCard(this.newCard);
+  }.bind(this);
+
+  // -------------------------------------------
+
+  this.addCard = function(newCard) {
+    this.deck.cards.push(this.newCard);
+    this.newCard = {plaintextFront: true, plaintextBack: true};
+    $('#editQuestionField').focus();
+
     console.log('this.deck----', this.deck);
   };
 
