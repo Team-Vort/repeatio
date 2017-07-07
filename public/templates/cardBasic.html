@@ -2,17 +2,17 @@
   <div class="col-xs-5 flashcard">
     <h4>Question</h4>
     <hr>
-    <textarea placeholder="Enter a question" ng-model="$ctrl.front" id="createQuestionField"></textarea>
+    <textarea placeholder="Enter a question" ng-model="$ctrl.card.question" id="createQuestionField"></textarea>
 </div>
 
   <div class="col-xs-5 flashcard">
     <h4>Answer</h4>
     <hr>
-    <textarea placeholder="Enter the answer" ng-model="$ctrl.back"></textarea>
+    <textarea placeholder="Enter the answer" ng-model="$ctrl.card.answer"></textarea>
   </div>
 </div>
 <div class="row text-center">
-  <button class="btn btn-primary btn-lg" ng-click="$ctrl.populateCard('basic', {'front': $ctrl.front, 'back': $ctrl.back})">
+  <button class="btn btn-primary btn-lg" ng-show="!$ctrl.hideSubmit" ng-click="$ctrl.populateCard($ctrl.card)">
     Submit Card
   </button>
 </div>

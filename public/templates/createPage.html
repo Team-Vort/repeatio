@@ -53,7 +53,7 @@
       <div ng-repeat="card in create.newDeck.cards" >
         <!-- All card types -->
         <div class="card-type-div">
-          <card-basic populate-card="create.populateCard" ng-show="create.newDeck.cardType === 'basic'"/>
+          <card-basic populate-card="create.populateCard" card="card.data" hide-submit="true" ng-show="create.newDeck.cardType === 'basic'"/>
         </div>
 
         <div class="card-type-div">
@@ -61,7 +61,7 @@
         </div>
 
         <div class="card-type-div">
-          <card-multiple-choice populate-card="create.populateCard" card="card.data" ng-show="create.newDeck.cardType === 'multiple choice'"/>
+          <card-multiple-choice populate-card="create.populateCard" card="card.data" editable="true" hide-submit="true" ng-show="create.newDeck.cardType === 'multiple choice'"/>
         </div>
 
         <div class="card-type-div">

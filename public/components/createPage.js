@@ -20,6 +20,10 @@ angular.module('flash-card')
 
   */
   this.defaultCardData = {
+    basic: {
+      question: '',
+      answer: ''
+    },
     multipleChoice: {
       question: 'Enter A question here',
       answer: 'Enter the message to be displayed for a correct answer here.',
@@ -66,12 +70,16 @@ angular.module('flash-card')
   this.populateCard = function (dataObj) {
     console.log('populateCard was called in createPage.js')
     if(this.newDeck.cardType === 'basic') {
-      if(!dataObj.front || !dataObj.back) {
+      if(!dataObj.question || !dataObj.answer) {
         alert("Please fill out a card");
         return;
       } else {
-        this.newCard.front = dataObj.front;
-        this.newCard.back = dataObj.back;
+        this.newCard.data = {};
+        this.newCard.data['question'] = dataObj['question'];
+        this.newCard.data['answer'] = dataObj['answer'];
+
+        this.newCard.data.front = dataObj.front;
+        this.newCard.data.back = dataObj.back;
       }
     }
 

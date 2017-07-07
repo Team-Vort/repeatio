@@ -38,7 +38,8 @@ angular.module('flash-card')
   bindings: {
     populateCard: '<',
     editable: '<',
-    card: '<'
+    card: '<',
+    hideSubmit: '<'
   },
   templateUrl: './templates/cardMultipleChoice.html'
 });

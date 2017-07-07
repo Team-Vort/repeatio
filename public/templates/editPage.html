@@ -12,11 +12,11 @@
 
   <!-- Card types: use components for each type of card -->
   <div class="card-type-div" >
-    <card-basic ng-show="edit.deck.cardType === 'basic'"/>
+    <card-basic ng-show="edit.deck.cardType === 'basic'" card="edit.defaultCardData.basic" editable="true" populate-card="edit.populateCard"/>
   </div>
 
   <div class="card-type-div">
-    <card-multiple-choice editable="true" card="edit.defaultCardData.multipleChoice" ng-show="edit.deck.cardType === 'multiple choice'"/>
+    <card-multiple-choice editable="true" card="edit.defaultCardData.multipleChoice" ng-show="edit.deck.cardType === 'multiple choice'" populate-card="edit.populateCard"/>
   </div>
 
   <!-- OLD CODE- hard coded card front/back in this file.  Use new components. -->
@@ -37,17 +37,19 @@
       </div>
     </div> -->
 
-    <button class="btn btn-primary" ng-click="edit.addCard(edit.newCard)">Add card</button>
+    <!--Button to add card now lives in each card component -->
+<!--
+    <button class="btn btn-primary" ng-click="edit.addCard(edit.newCard)">Add card</button> -->
 
     <hr> <!-- Start of list of currently made cards -->
 
     <div ng-repeat="card in edit.deck.cards" >
       <div class="card-type-div" >
-        <card-basic ng-show="edit.deck.cardType === 'basic'"/>
+        <card-basic editable="true" hide-submit="true" card="card.data" ng-show="edit.deck.cardType === 'basic'"/>
       </div>
 
       <div class="card-type-div">
-        <card-multiple-choice editable="true" card="card.data" ng-show="edit.deck.cardType === 'multiple choice'"/>
+        <card-multiple-choice editable="true" hide-submit="true" card="card.data" ng-show="edit.deck.cardType === 'multiple choice'"/>
       </div>
 
 
