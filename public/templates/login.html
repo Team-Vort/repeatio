@@ -8,7 +8,7 @@
   <div class="row">
     <form class="accCreationForm col-xs-12 col-md-6 vertical-centered centered">
       <h4>Create a New Account</h4>
-      <input id="accName" type="text" placeholder="choose a username" ng-model="login.accName"/>
+      <input id="accName" type="email" placeholder="enter email" ng-model="login.accName"/>
       <br />
       <input id="accPw" type="password" placeholder="password" ng-model="login.accPw"/>
       <br />
@@ -18,11 +18,39 @@
     </form>
     <form class="loginForm col-xs-12 col-md-4 vertical-centered centered">
       <h4>Login</h4>
-      <input id="loginName" type="text" placeholder="username" ng-model="login.loginName"/>
+      <input id="loginName" type="email" placeholder="email" ng-model="login.loginName"/>
       <br />
       <input id="loginPw" type="password" placeholder="password" ng-model="login.loginPw"/>
       <br />
+      <div class="forgot-password" ng-click="forgotPassword()">Forgot Password?</div>
       <button class="btn btn-primary" ng-click="login.login()">Log In</button>
     </form>
+
+    <div ng-if="show">
+    <form class="accCreationForm col-xs-12 col-md-6">
+      <h4>Reset Password</h4>
+      <input id="resetCode" type="text" placeholder="Enter reset code"/>
+      <br />
+      <input id="newPassword" type="text" placeholder="Enter new password"/>
+      <br />
+      <input id="newPasswordConfirm" type="text" placeholder="Confirm new password"/>
+      <br />
+      <button class="btn btn-primary" ng-click="login.reset()">Submit</button>
+    </form>
   </div>
+  </div>
+
+  <!-- <div ng-if="app.show">
+    <form class="loginForm col-xs-12 col-md-6">
+      <h4>Reset Password</h4>
+      <input id="resetCode" type="text" placeholder="Enter reset code"/>
+      <br />
+      <input id="newPassword" type="text" placeholder="Enter new password"/>
+      <br />
+      <input id="newPasswordConfirm" type="text" placeholder="Confirm new password"/>
+      <br />
+      <button class="btn btn-primary"">Submit</button>
+    </form>
+  </div> -->
+
 </div>
