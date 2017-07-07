@@ -1,5 +1,5 @@
 angular.module('flash-card')
-.controller('StudyCtrl', function($http, $location, $timeout) {
+.controller('StudyCtrl', function($scope, $http, $location, $timeout) {
 
   var shuffleDeck = function(deck) {
     for (var i = 0; i < deck.length; i++) {
@@ -58,10 +58,12 @@ angular.module('flash-card')
 
   this.handleNext = () => {
     resetConditionToInitialState['handleNext'](this);
+    $scope.$broadcast('onClickNext', this.counter+1);
   };
 
   this.handlePrev = () => {
     resetConditionToInitialState['handlePrev'](this);
+    $scope.$broadcast('onClickPrev', this.counter+1);
   };
 
   this.handleFlip = () => {
@@ -143,3 +145,4 @@ angular.module('flash-card')
   // initialize the first card to check for whether to highlight
   this.highlightingHelperFn();
 });
+
