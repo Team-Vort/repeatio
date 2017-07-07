@@ -25,13 +25,15 @@
       <card-basic populate-card="create.populateCard" ng-show="create.newDeck.cardType === 'basic'"/>
     </div>
 
+    <div class="card-type-div">
+      <card-multiple-choice populate-card="create.populateCard" editable="true" card="create.defaultCardData.multipleChoice" ng-show="create.newDeck.cardType === 'multiple choice'"/>
+    </div>
+<!--
     <div class="card-type-div" >
       <card-image ng-show="create.newDeck.cardType === 'image'"/>
     </div>
 
-    <div class="card-type-div">
-      <card-multiple-choice populate-card="create.populateCard" editable="true" card="create.defaultCardData.multipleChoice" ng-show="create.newDeck.cardType === 'multiple choice'"/>
-    </div>
+
 
     <div class="card-type-div">
       <card-short-answer ng-show="create.newDeck.cardType === 'short answer'"/>
@@ -39,7 +41,7 @@
 
     <div class="card-type-div">
       <card-true-false ng-show="create.newDeck.cardType === 'true/false'"/>
-    </div>
+    </div> -->
     <!-- End of CARD TYPES -->
 
 
@@ -57,11 +59,11 @@
         </div>
 
         <div class="card-type-div">
-          <card-image ng-show="create.newDeck.cardType === 'image'"/>
+          <card-multiple-choice populate-card="create.populateCard" card="card.data" editable="true" hide-submit="true" ng-show="create.newDeck.cardType === 'multiple choice'"/>
         </div>
 
-        <div class="card-type-div">
-          <card-multiple-choice populate-card="create.populateCard" card="card.data" editable="true" hide-submit="true" ng-show="create.newDeck.cardType === 'multiple choice'"/>
+   <!--      <div class="card-type-div">
+          <card-image ng-show="create.newDeck.cardType === 'image'"/>
         </div>
 
         <div class="card-type-div">
@@ -70,7 +72,7 @@
 
         <div class="card-type-div" >
           <card-true-false ng-show="create.newDeck.cardType === 'true/false'"/>
-        </div>
+        </div> -->
         <!-- End of CARD TYPES -->
 
 
