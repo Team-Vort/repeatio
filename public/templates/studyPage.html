@@ -9,7 +9,10 @@
         <h3>{{ study.current.data.answer }}</h3>
 
         <!-- Multiple Choice Answer Data -->
-        <span class="label label-success" ng-show="study.deck.cardType === 'multiple choice'">{{'Correct Answer: ' + study.current.data.correctOption.toUpperCase()}}</span>
+        <h1 ng-show="study.deck.cardType === 'multiple choice'">
+          <span class="label label-success">{{'Correct Answer: ' + study.current.data.correctOption.toUpperCase()}}
+          </span>
+        </h1>
 
       </div>
     </div>
