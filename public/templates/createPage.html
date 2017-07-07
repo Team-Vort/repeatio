@@ -21,26 +21,25 @@
     <h3>GROUP NAME: <input placeholder="Enter a group name" ng-model="create.newDeck.groupname" required /></h3>
 
     <!-- All card types -->
-    <div class="card-type-div" ng-show="create.getCardType() === 'basic'">
-      <card-basic populate-card="create.populateCard"/>
+    <div class="card-type-div" >
+      <card-basic populate-card="create.populateCard" ng-show="create.getCardType() === 'basic'"/>
     </div>
 
-    <div class="card-type-div" ng-show="create.getCardType() === 'image'">
-      <card-image />
+    <div class="card-type-div" >
+      <card-image ng-show="create.getCardType() === 'image'"/>
     </div>
 
-    <div class="card-type-div" ng-show="create.getCardType() === 'multiple choice'">
-      <card-multiple-choice />
+    <div class="card-type-div">
+      <card-multiple-choice populate-card="create.populateCard" editable="true" card="create.defaultCardData.multipleChoice" ng-show="create.getCardType() === 'multiple choice'"/>
     </div>
 
-    <div class="card-type-div" ng-show="create.getCardType() === 'short answer'">
-      <card-short-answer />
+    <div class="card-type-div">
+      <card-short-answer ng-show="create.getCardType() === 'short answer'"/>
     </div>
 
-    <div class="card-type-div" ng-show="create.getCardType() === 'true/false'">
-      <card-true-false />
+    <div class="card-type-div">
+      <card-true-false ng-show="create.getCardType() === 'true/false'"/>
     </div>
-
     <!-- End of CARD TYPES -->
 
 
@@ -51,7 +50,32 @@
       <hr> <!-- Start of list of currently made cards -->
 
       <div ng-repeat="card in create.newDeck.cards" >
-        <div class="row">
+        <!-- All card types -->
+        <div class="card-type-div">
+          <card-basic populate-card="create.populateCard" ng-show="card.cardtype === 'basic'"/>
+        </div>
+
+        <div class="card-type-div">
+          <card-image ng-show="card.cardtype === 'image'"/>
+        </div>
+
+        <div class="card-type-div">
+          <card-multiple-choice populate-card="create.populateCard" card="card.data" ng-show="card.cardtype === 'multiple choice'"/>
+        </div>
+
+        <div class="card-type-div">
+          <card-short-answer ng-show="card.cardtype === 'short answer'"/>
+        </div>
+
+        <div class="card-type-div" >
+          <card-true-false ng-show="card.cardtype === 'true/false'"/>
+        </div>
+        <!-- End of CARD TYPES -->
+
+
+
+        <!-- OLD code for hard-coded feed.  Need to show different controllers based on type of each card -->
+        <!-- <div class="row">
           <div class="col-xs-5 flashcard">
             <h4>Question</h4>
 
@@ -77,7 +101,7 @@
             <hr>
             <textarea placeholder="Enter the answer" ng-model="card.back"></textarea>
           </div>
-        </div>
+        </div> -->
 
         <button class="btn btn-danger" ng-click="create.deleteCard(card)">Delete card</button>
         <button class="btn" ng-click="create.moveUp(card)"><span class="fa fa-angle-up"></span></button>

@@ -1,9 +1,8 @@
 angular.module('flash-card')
 .controller('CardBasicCtrl', function() {
-  this.dataObj = {
-    front: 'Knock Knock',
-    back: 'Who\'s There?'
-  };
+  this.front = 'Knock Knock';
+  this.back = 'Who\'s There?';
+
 })
 
 .component('cardBasic', {

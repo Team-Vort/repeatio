@@ -17,11 +17,25 @@ angular.module('flash-card')
     For basic, image, and short answer cards, the user must self-grade.  Multiple choice and true/false answers are automatically graded.
 
   */
-
+  this.defaultCardData = {
+    multipleChoice: {
+      question: 'Enter A question here',
+      answer: 'Enter the message to be displayed for a correct answer here.',
+      correctOption: 'a',
+      options: {
+        a: 'foo',
+        b: 'bar',
+        c: 'this = that',
+        d: '0/0',
+        e: 'NaN == NaN'
+      }
+    }
+  };
 
 
   this.getCardType = function() {
     //This returns a copy of the string so it cannot be mutated
+    console.log('getCardType returns: ', this._cardType.split('').slice().join(''));
     return this._cardType.split('').slice().join('');
   };
 
@@ -33,6 +47,7 @@ angular.module('flash-card')
     //only set type if valid
     if (validTypes.includes(s)) {
       this._cardType = s;
+      console.log('card type set to: ', this._cardType);
       //toggle typeSelected to show correct HTML using ng-show
       this._typeSelcted();
       return 1;
@@ -57,18 +72,40 @@ angular.module('flash-card')
         this.newCard.back = dataObj.back;
       }
     }
+
+    if(cardtype === 'multiple choice') {
+      if(!dataObj.answer || !dataObj.question) {
+        alert("Please fill out required fields");
+        return;
+      } else {
+
+        //Make a copy of the object
+        this.newCard.data = {};
+        var tempOptions = {};
+        for (var j in dataObj.options) {
+          tempOptions[j] = dataObj.options[j];
+        }
+        this.newCard.data.options = tempOptions;
+        for (var k in dataObj) {
+          if (k !== 'options') {
+            this.newCard.data[k] = dataObj[k];
+          }
+        }
+        console.log('multiple choice card about to be added to deck: ', this.newCard);
+      }
+    }
     this.addCard(this.newCard);
   }.bind(this);
 
   this.addCard = function(newCard) {
     console.log('addCard was called on createPage.js');
-    if(!newCard.front || !newCard.back) {
-      alert("Please fill out a card");
-    } else {
-      this.newDeck.cards.push(newCard);
-      this.newCard = {plaintextFront: true, plaintextBack: true};
-      $('#createQuestionField').focus();
-    }
+    //set card type on newCard.
+    this.newCard.cardtype = this._cardType;
+    this.newDeck.cards.push(newCard);
+    console.log('Card was just added to new deck: ', this.newDeck);
+    this.newCard = {plaintextFront: true, plaintextBack: true};
+    $('#createQuestionField').focus();
+
   };
 
   this.handleSave = function() {

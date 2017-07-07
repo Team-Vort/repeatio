@@ -19,6 +19,19 @@ var CardSchema = new Schema({
   lang: {
     type: String,
     default: 'Javascript'
+  },
+  card: {
+    //Added for data-rich card types such as multiple choice card
+    question: String,
+    answer: String,
+    correctOption: String,
+    options: {
+      a: String,
+      b: String,
+      c: String,
+      d: String,
+      e: String
+    }
   }
 });
 
