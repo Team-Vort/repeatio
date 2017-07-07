@@ -1,6 +1,12 @@
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-3">Repeat.it</h1>
+    <p class="lead">A simple flashcard app to accelerate learning</p>
+  </div>
+</div>
 <div class="container loginContainer" ng-controller="LoginCtrl as login">
   <div class="row">
-    <form class="accCreationForm col-xs-12 col-md-6">
+    <form class="accCreationForm col-xs-12 col-md-6 vertical-centered centered">
       <h4>Create a New Account</h4>
       <input id="accName" type="text" placeholder="choose a username" ng-model="login.accName"/>
       <br />
@@ -10,8 +16,7 @@
       <br />
       <button ng-click="login.signup()" class="btn btn-primary">Sign Up</button>
     </form>
-
-    <form class="loginForm col-xs-12 col-md-6">
+    <form class="loginForm col-xs-12 col-md-4 vertical-centered centered">
       <h4>Login</h4>
       <input id="loginName" type="text" placeholder="username" ng-model="login.loginName"/>
       <br />

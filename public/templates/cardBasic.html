@@ -1,13 +1,27 @@
-<div class="col-xs-5 flashcard">
-  <h4>Question</h4>
-
-  <div class="codeToggleBtn">
-    <button ng-click="create.toggleHighlightFront(card)" ng-class="{'btn': card.plaintextFront, 'btn btn-primary': !card.plaintextFront}">
-      <span class="fa fa-code"></span>
-    </button>
-  </div>
-
-  <hr>
-  <textarea placeholder="Enter a question" ng-model="card.front" ></textarea>
+<div class="row">
+  <div class="col-xs-5 flashcard">
+    <h4>Question</h4>
+    <hr>
+    <textarea placeholder="Enter a question" id="createQuestionField"></textarea>
 </div>
 
+  <div class="col-xs-5 flashcard">
+    <h4>Answer</h4>
+    <hr>
+    <textarea placeholder="Enter the answer"></textarea>
+  </div>
+</div>
+
+<!-- <div class="row">
+  <div class="col-xs-5 flashcard">
+    <h4>Question</h4>
+    <hr>
+    <textarea placeholder="Enter a question" ng-model="create.newCard.front" id="createQuestionField"></textarea>
+</div>
+
+  <div class="col-xs-5 flashcard">
+    <h4>Answer</h4>
+    <hr>
+    <textarea placeholder="Enter the answer" ng-show="create.getCardType() ==='basic';" ng-keyup="$event.keyCode == 13 && create.addCard(create.newCard)" ng-model="create.newCard.back"></textarea>
+  </div>
+</div> -->

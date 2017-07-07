@@ -1,11 +1,11 @@
 angular.module('flash-card')
 .controller('CreatePageCtrl', function($http, $location){
   var currentUser = localStorage.getItem('currentUser');
-  this.typeSelected = false;
   this.newDeck = {username: currentUser};
   this.newDeck.cards = [];
   this.newCard = {plaintextFront: true, plaintextBack: true};
   this._cardType = "basic";
+  this.typeSelected = false;
   //Do not modify _cardType directly, use getters and setters.
   /* Card types:
     "basic" - just text on front and back, no way to enter an answer
@@ -29,6 +29,7 @@ angular.module('flash-card')
 
   this.setCardType = function(s) {
     s = s.toLowerCase();
+    console.log('setCardType string: ',s);
     var validTypes = "basic,image,multiple choice, true/false, short answer";
 
     //only set type if valid
@@ -41,7 +42,7 @@ angular.module('flash-card')
       //error handling- return -1 if invalid string passed
       return -1;
     }
-  };
+  }.bind(this);
 
   this._typeSelcted = function() {
     this.typeSelected = true;
