@@ -4,6 +4,22 @@ angular.module('flash-card')
   this.newCard = {plaintextFront: true, plaintextBack: true};
   //***** add more of the default schema ****
   this.deck = JSON.parse(localStorage.getItem('currentDeck'));
+
+  this.defaultCardData = {
+    multipleChoice: {
+      question: 'Enter A question here',
+      answer: 'Enter the message to be displayed for a correct answer here.',
+      correctOption: 'a',
+      options: {
+        a: 'foo',
+        b: 'bar',
+        c: 'this = that',
+        d: '0/0',
+        e: 'NaN == NaN'
+      }
+    }
+  };
+
   this.addCard = function(newCard) {
     if(!newCard.front || !newCard.back) {
       alert("Please fill out a card");

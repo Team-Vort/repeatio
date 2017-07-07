@@ -22,23 +22,23 @@
 
     <!-- All card types -->
     <div class="card-type-div" >
-      <card-basic populate-card="create.populateCard" ng-show="create.getCardType() === 'basic'"/>
+      <card-basic populate-card="create.populateCard" ng-show="create.newDeck.cardType === 'basic'"/>
     </div>
 
     <div class="card-type-div" >
-      <card-image ng-show="create.getCardType() === 'image'"/>
+      <card-image ng-show="create.newDeck.cardType === 'image'"/>
     </div>
 
     <div class="card-type-div">
-      <card-multiple-choice populate-card="create.populateCard" editable="true" card="create.defaultCardData.multipleChoice" ng-show="create.getCardType() === 'multiple choice'"/>
+      <card-multiple-choice populate-card="create.populateCard" editable="true" card="create.defaultCardData.multipleChoice" ng-show="create.newDeck.cardType === 'multiple choice'"/>
     </div>
 
     <div class="card-type-div">
-      <card-short-answer ng-show="create.getCardType() === 'short answer'"/>
+      <card-short-answer ng-show="create.newDeck.cardType === 'short answer'"/>
     </div>
 
     <div class="card-type-div">
-      <card-true-false ng-show="create.getCardType() === 'true/false'"/>
+      <card-true-false ng-show="create.newDeck.cardType === 'true/false'"/>
     </div>
     <!-- End of CARD TYPES -->
 
@@ -53,23 +53,23 @@
       <div ng-repeat="card in create.newDeck.cards" >
         <!-- All card types -->
         <div class="card-type-div">
-          <card-basic populate-card="create.populateCard" ng-show="card.cardtype === 'basic'"/>
+          <card-basic populate-card="create.populateCard" ng-show="create.newDeck.cardType === 'basic'"/>
         </div>
 
         <div class="card-type-div">
-          <card-image ng-show="card.cardtype === 'image'"/>
+          <card-image ng-show="create.newDeck.cardType === 'image'"/>
         </div>
 
         <div class="card-type-div">
-          <card-multiple-choice populate-card="create.populateCard" card="card.data" ng-show="card.cardtype === 'multiple choice'"/>
+          <card-multiple-choice populate-card="create.populateCard" card="card.data" ng-show="create.newDeck.cardType === 'multiple choice'"/>
         </div>
 
         <div class="card-type-div">
-          <card-short-answer ng-show="card.cardtype === 'short answer'"/>
+          <card-short-answer ng-show="create.newDeck.cardType === 'short answer'"/>
         </div>
 
         <div class="card-type-div" >
-          <card-true-false ng-show="card.cardtype === 'true/false'"/>
+          <card-true-false ng-show="create.newDeck.cardType === 'true/false'"/>
         </div>
         <!-- End of CARD TYPES -->
 

@@ -1,12 +1,14 @@
 angular.module('flash-card')
 .controller('CreatePageCtrl', function($http, $location){
   var currentUser = localStorage.getItem('currentUser');
-  this.newDeck = {username: currentUser};
+  this.newDeck = {
+    username: currentUser,
+    cardType: "basic"
+  };
   this.newDeck.cards = [];
   this.newCard = {plaintextFront: true, plaintextBack: true};
-  this._cardType = "basic";
   this.typeSelected = false;
-  //Do not modify _cardType directly, use getters and setters.
+  //Do not modify cardType directly, use getters and setters.
   /* Card types:
     "basic" - just text on front and back, no way to enter an answer
     "image" - flashcard with embedded image. no way to enter an answer
@@ -35,8 +37,8 @@ angular.module('flash-card')
 
   this.getCardType = function() {
     //This returns a copy of the string so it cannot be mutated
-    console.log('getCardType returns: ', this._cardType.split('').slice().join(''));
-    return this._cardType.split('').slice().join('');
+    console.log('getCardType returns: ', this.newDeck.cardType.split('').slice().join(''));
+    return this.newDeck.cardType.split('').slice().join('');
   };
 
   this.setCardType = function(s) {
@@ -46,10 +48,10 @@ angular.module('flash-card')
 
     //only set type if valid
     if (validTypes.includes(s)) {
-      this._cardType = s;
-      console.log('card type set to: ', this._cardType);
+      this.newDeck.cardType = s;
+      console.log('card type set to: ', this.newDeck.cardType);
       //toggle typeSelected to show correct HTML using ng-show
-      this._typeSelcted();
+      this._typeSelected();
       return 1;
     } else {
       //error handling- return -1 if invalid string passed
@@ -57,13 +59,13 @@ angular.module('flash-card')
     }
   }.bind(this);
 
-  this._typeSelcted = function() {
+  this._typeSelected = function() {
     this.typeSelected = true;
   };
 
-  this.populateCard = function (cardtype,dataObj) {
+  this.populateCard = function (dataObj) {
     console.log('populateCard was called in createPage.js')
-    if(cardtype === 'basic') {
+    if(this.newDeck.cardType === 'basic') {
       if(!dataObj.front || !dataObj.back) {
         alert("Please fill out a card");
         return;
@@ -73,7 +75,7 @@ angular.module('flash-card')
       }
     }
 
-    if(cardtype === 'multiple choice') {
+    if(this.newDeck.cardType === 'multiple choice') {
       if(!dataObj.answer || !dataObj.question) {
         alert("Please fill out required fields");
         return;
@@ -100,7 +102,6 @@ angular.module('flash-card')
   this.addCard = function(newCard) {
     console.log('addCard was called on createPage.js');
     //set card type on newCard.
-    this.newCard.cardtype = this._cardType;
     this.newDeck.cards.push(newCard);
     console.log('Card was just added to new deck: ', this.newDeck);
     this.newCard = {plaintextFront: true, plaintextBack: true};

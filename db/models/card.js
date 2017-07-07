@@ -20,7 +20,7 @@ var CardSchema = new Schema({
     type: String,
     default: 'Javascript'
   },
-  card: {
+  data: {
     //Added for data-rich card types such as multiple choice card
     question: String,
     answer: String,
