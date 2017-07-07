@@ -143,6 +143,28 @@ router.post('/signup', function(req, res) {
   });
 });
 
+
+router.post('/reset', function(req, res){
+  UserFile.User.findOne({
+    username: req.body.username
+  }).then(function(user) {
+    if(user === null){
+      bcrypt.genSalt(saltRounds, function(err, salt) {
+        bcrypt.hash(req.body.password, salt, function(err, hash){
+          if(err){
+            console.error(err);
+          }else{
+            UserFile.User.findOne({username: req.body.username}, function(err, doc){
+              doc.password = hash;
+              doc.save();
+            })
+          }
+        })
+      })
+    }
+  })
+})
+
 router.post('/forgotpassword', function(req, res){
   let transporter = nodemailer.createTransport({
       service: 'gmail',
@@ -172,7 +194,7 @@ router.post('/forgotpassword', function(req, res){
       res.end()
     })
   })
-  // res.status(200).json("OK")
+
 
 
 // (╯°□°）╯︵ ┻━┻       (you don't actually need it for anything. it was a joke)

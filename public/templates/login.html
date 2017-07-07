@@ -29,13 +29,13 @@
     <div ng-if="show">
     <form class="accCreationForm col-xs-12 col-md-6">
       <h4>Reset Password</h4>
-      <input id="resetCode" type="text" placeholder="Enter reset code"/>
+      <input id="resetCode" type="text" placeholder="Enter reset code" ng-model="login.resetCode"/>
       <br />
-      <input id="newPassword" type="text" placeholder="Enter new password"/>
+      <input id="newPassword" type="password" placeholder="Enter new password" ng-model="login.newPassword"/>
       <br />
-      <input id="newPasswordConfirm" type="text" placeholder="Confirm new password"/>
+      <input id="newPasswordConfirm" type="password" placeholder="Confirm new password" ng-model="login.newPasswordConfirm"/>
       <br />
-      <button class="btn btn-primary" ng-click="login.reset()">Submit</button>
+      <button class="btn btn-primary" ng-click="login.reset()">Reset</button>
     </form>
   </div>
   </div>

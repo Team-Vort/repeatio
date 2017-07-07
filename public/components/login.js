@@ -29,7 +29,18 @@ angular.module('flash-card')
     resetCode = this.resetCode;
     newPassword = this.newPassword;
     newPasswordConfirm = this.newPasswordConfirm;
-    console.log(this.resetCode, newPassword, newPasswordConfirm)
+    username = $scope.email;
+    console.log($scope.email);
+    loginSvc.reset(username, resetCode, newPassword, function(res) {
+      if(this.newPassword !== this.newPasswordConfirm && res.data === "MATCH"){
+        alert('Your passwords do not match; please check and try again.');
+        that.newPassword = '';
+        that.newPasswordConfirm = '';
+      }else if(this.newPassword === this.newPasswordConfirm && res.data = "MATCH"){
+
+      }
+    })
+
 
   }
 
@@ -66,11 +77,13 @@ angular.module('flash-card')
   };
 
   $scope.show = false;
+  $scope.email;
   $scope.forgotPassword = function(){
     this.email = prompt('What is the email associated with your account?');
+    $scope.email = this.email;
     this.resetCode = Math.floor(Math.random() * 1000000);
     $http.post('http://localhost:3000/forgotpassword', JSON.stringify({email: this.email, resetCode: this.resetCode})).then(function(){
-        alert("A password reset code has been sent to " + this.email);
+        alert("A password reset code has been sent to " + $scope.email);
         $scope.show = !$scope.show;
       })
     }
