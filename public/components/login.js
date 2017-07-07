@@ -1,6 +1,6 @@
 angular.module('flash-card')
 
-.controller('LoginCtrl', function(loginSvc, $location, $http){
+.controller('LoginCtrl', function(loginSvc, $location, $http, $scope){
 
   this.login = function() {
     var that = this;
@@ -23,6 +23,15 @@ angular.module('flash-card')
       }
     });
   };
+
+  this.reset = function(){
+    var that = this;
+    resetCode = this.resetCode;
+    newPassword = this.newPassword;
+    newPasswordConfirm = this.newPasswordConfirm;
+    console.log(this.resetCode, newPassword, newPasswordConfirm)
+
+  }
 
   this.signup = function() {
     var that = this;
@@ -55,7 +64,17 @@ angular.module('flash-card')
       }
     });
   };
-})
+
+  $scope.show = false;
+  $scope.forgotPassword = function(){
+    this.email = prompt('What is the email associated with your account?');
+    this.resetCode = Math.floor(Math.random() * 1000000);
+    $http.post('http://localhost:3000/forgotpassword', JSON.stringify({email: this.email, resetCode: this.resetCode})).then(function(){
+        alert("A password reset code has been sent to " + this.email);
+        $scope.show = !$scope.show;
+      })
+    }
+  })
 
 .component('login', {
   controller: 'LoginCtrl',

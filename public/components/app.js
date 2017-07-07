@@ -2,17 +2,35 @@ angular.module('flash-card')
 .controller('AppCtrl', function($http, $timeout) {
   var that = this;
   var currentUser = localStorage.getItem('currentUser');
-  // adding this.getGroups
-  console.log("THIS", localStorage.getItem('decks'));
-  // console.log("THIS IS LOCALSTORAGE: ", localStorage);
+  var currentDecks = JSON.parse(localStorage.getItem('decks'));
+  this.categories = [];
+  this.names = [];
   this.getGroups = function() {
-    that.groups = [];
-    // for (var i = 0; i<)
+    for (var i = 0; i<currentDecks.length; i++) {
+      if(this.names.indexOf(currentDecks[i].groupname) === -1){
+        this.names.push(currentDecks[i].groupname);
+        this.categories.push({"group": currentDecks[i].groupname});
+      }
+    }
+  }
+  this.getGroups();
+
+  this.show = false;
+  this.getGroupDecks = function(group){
+    this.currentGroup = group.group;
+    this.setDecks();
+    this.show = !this.show;
   }
 
   this.setDecks = function() {
-      that.decks = JSON.parse(localStorage.getItem('decks'));
-      console.log('setDecks called. this.decks: ', that.decks);
+      that.allDecks = JSON.parse(localStorage.getItem('decks'));
+      that.decks = [];
+      for (var j = 0; j<that.allDecks.length; j++){
+        if(that.allDecks[j].groupname === this.currentGroup){
+          that.decks.push(that.allDecks[j]);
+        }
+      }
+      console.log('setDecks called. this.decks: ', that.allDecks);
 
   };
   this.getDeck = function(deck){
@@ -38,13 +56,13 @@ angular.module('flash-card')
     });
   }
 };
-  if (currentUser === null) {
-    // this is to make the client-side wait for the public decks to arrive before setting this.decks
-    console.log('you are not signed in');
-    $timeout(function() {that.setDecks();}, 100);
-  } else {
-    this.setDecks();
-  }
+  // if (currentUser === null) {
+  //   // this is to make the client-side wait for the public decks to arrive before setting this.decks
+  //   console.log('you are not signed in');
+  //   $timeout(function() {that.setDecks();}, 100);
+  // } else {
+  //   this.setDecks();
+  // }
 })
 .component('app', {
   controller: 'AppCtrl',
@@ -52,4 +70,6 @@ angular.module('flash-card')
 });
 
 
-// [{"_id":"595d9d3a063adb09b45b2850","username":"Andrew","deckname":"United States","groupname":"Geography","__v":0,"cards":[{"front":"What is the biggest state by land area?","back":"Alaska.","_id":"595d9d3a063adb09b45b2851","lang":"Javascript","plaintextBack":true,"plaintextFront":true}],"public":false},{"_id":"595d9d693ebfb7469466311a","username":"Andrew","deckname":"Canada","groupname":"Geography","__v":0,"cards":[{"front":"What is the biggest province by population?","back":"Ontario at 13 million.","_id":"595d9d693ebfb7469466311b","lang":"Javascript","plaintextBack":true,"plaintextFront":true}],"public":false}]
+// [{"_id":"595d9d3a063adb09b45b2850","username":"Andrew","deckname":"United States","groupname":"Geography","__v":0,"cards":[{"front":"What is the biggest state by land area?","back":"Alaska.","_id":"595d9d3a063adb09b45b2851","lang":"Javascript","plaintextBack":true,"plaintextFront":true}],"public":false},
+
+  // {"_id":"595d9d693ebfb7469466311a","username":"Andrew","deckname":"Canada","groupname":"Geography","__v":0,"cards":[{"front":"What is the biggest province by population?","back":"Ontario at 13 million.","_id":"595d9d693ebfb7469466311b","lang":"Javascript","plaintextBack":true,"plaintextFront":true}],"public":false}]

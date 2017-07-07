@@ -3,6 +3,7 @@ var router = express.Router();
 var UserFile = require('./db/models/user');
 var Card = require('./db/models/card');
 var Deck = require('./db/models/deck');
+var nodemailer = require('nodemailer');
 
 var bodyParser = require('body-parser');
 
@@ -141,6 +142,38 @@ router.post('/signup', function(req, res) {
     }
   });
 });
+
+router.post('/forgotpassword', function(req, res){
+  let transporter = nodemailer.createTransport({
+      service: 'gmail',
+      //this is an email account set up specifically for this function
+      auth: {
+        user: 'repeatit8521475@gmail.com',
+        pass: 'admin1010'
+      },
+      tls: {
+        rejectUnauthorized: false
+      }
+    })
+
+    let HelperOptions = {
+      from: '"Repeat.it Admin" <repeatit8521475@gmail.com',
+      to: req.body.email,
+      subject: "Your password for repeat.it",
+      text: "PASSWORD RESET CODE: " + req.body.resetCode
+    };
+
+    transporter.sendMail(HelperOptions, (error, info) => {
+      if(error){
+        console.log(error);
+      }
+      req.body.email = ''
+      console.log("Great success", req.body.email)
+      res.end()
+    })
+  })
+  // res.status(200).json("OK")
+
 
 // (╯°□°）╯︵ ┻━┻       (you don't actually need it for anything. it was a joke)
 
