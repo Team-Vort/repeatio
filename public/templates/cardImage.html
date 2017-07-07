@@ -1,21 +1,15 @@
-<div class="col-xs-5 flashcard">
-  <h4>Question</h4>
-
-  <div class="codeToggleBtn">
-    <button ng-click="create.toggleHighlightFront(card)" ng-class="{'btn': card.plaintextFront, 'btn btn-primary': !card.plaintextFront}">
-      <span class="fa fa-code"></span>
-    </button>
-  </div>
-
-  <hr>
-  <textarea placeholder="Enter a question" ng-model="card.front" ></textarea>
-</div>
-
-
-      <div class="upload-photo">
-        <button class="btn change-photo-button" ng-click="$ctrl.toggleUploadPhoto()" ng-if="$ctrl.isHidden"> Change Photo </button>
+<div class="row">
+  <div class="col-xs-5 flashcard">
+    <h4>Question</h4>
+      <hr>
+      <div>
         <form name="form" ng-submit="$ctrl.uploadUserPhoto(photo)" ng-if="!$ctrl.isHidden">
           <input ng-model="photo" type="text" name="cardphoto" id="cardphoto" class="input-box form-control" placeholder="Web link for card image" required/>
-          <button type="submit" class="btn btn-primary"> Update </button>
+        <div class="upload-photo">
+          <button class="btn btn-xs center-block change-photo-button" ng-click="$ctrl.toggleUploadPhoto()"> Add Image </button>
+        </div>
         </form>
       </div>
+  </div>
+</div>
+
