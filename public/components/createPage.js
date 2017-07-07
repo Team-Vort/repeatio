@@ -60,7 +60,9 @@ angular.module('flash-card')
   this.handleSave = function() {
     if(!this.newDeck.deckname) {
       alert("Please enter a deck name");
-    } else {
+    }else if(!this.newDeck.groupname){
+      alert("Please enter a group name");
+    }else{
       console.log('NEW DECK', this.newDeck);
       // post goes back to with user info
       $http.post('/decks?username=' + localStorage.getItem('currentUser'), this.newDeck).then(function() {

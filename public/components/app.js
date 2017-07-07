@@ -1,15 +1,15 @@
 angular.module('flash-card')
-.controller('AppCtrl', function($scope, $http, $timeout) {
+.controller('AppCtrl', function($http, $timeout) {
   var that = this;
   var currentUser = localStorage.getItem('currentUser');
   var currentDecks = JSON.parse(localStorage.getItem('decks'));
-  $scope.categories = [];
-  $scope.names = [];
+  this.categories = [];
+  this.names = [];
   this.getGroups = function() {
     for (var i = 0; i<currentDecks.length; i++) {
-      if($scope.names.indexOf(currentDecks[i].groupname) === -1){
-        $scope.names.push(currentDecks[i].groupname);
-        $scope.categories.push({"group": currentDecks[i].groupname});
+      if(this.names.indexOf(currentDecks[i].groupname) === -1){
+        this.names.push(currentDecks[i].groupname);
+        this.categories.push({"group": currentDecks[i].groupname});
       }
     }
   }
