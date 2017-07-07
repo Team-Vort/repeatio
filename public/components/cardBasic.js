@@ -4,9 +4,12 @@ angular.module('flash-card')
 })
 
 .component('cardBasic', {
-  controller: 'CardBasicCtrl',
   bindings: {
-
+    populateCard: '<',
+    editable: '<',
+    card: '<',
+    hideSubmit: '<'
   },
+  controller: 'CardBasicCtrl',
   templateUrl: './templates/cardBasic.html'
 });
