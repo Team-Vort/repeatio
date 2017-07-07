@@ -31,7 +31,7 @@ angular.module('flash-card')
   var resetConditionToInitialState = {
     'handleNext' : function (studyControllerVariables) {
       var that = studyControllerVariables;
-      if (that.counter === that.shuffledDeck.length - 2) {
+      if (that.counter === that.shuffledDeck.length - 1) {
         that.showNext = false;
       }
       that.showPrev = true;
@@ -58,11 +58,13 @@ angular.module('flash-card')
 
   this.handleNext = () => {
     resetConditionToInitialState['handleNext'](this);
+    // broadcast the current counter so the progress tracker can be updated
     $scope.$broadcast('onClickNext', this.counter+1);
   };
 
   this.handlePrev = () => {
     resetConditionToInitialState['handlePrev'](this);
+    // broadcast the current counter so the progress tracker can be updated
     $scope.$broadcast('onClickPrev', this.counter+1);
   };
 

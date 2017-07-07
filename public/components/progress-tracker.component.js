@@ -14,6 +14,7 @@
 
     $scope.$on('onClickNext', function(event, data){
       model.curCard = data;
+      console.log(data)
     })
 
     $scope.$on('onClickPrev', function(event, data){
