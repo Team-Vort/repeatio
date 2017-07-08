@@ -1,6 +1,6 @@
 angular.module('flash-card')
 .controller('StudyCtrl', function($scope, $http, $location, $timeout) {
-
+  var model = this;
   var shuffleDeck = function(deck) {
     for (var i = 0; i < deck.length; i++) {
       var random = Math.floor(Math.random()*(deck.length-i)) + i;
@@ -25,6 +25,7 @@ angular.module('flash-card')
   this.current = this.shuffledDeck[0];
   this.front = true;
   this.flipped = false;
+  this.theEnd = false; // controls the end card which displays, start over option
 
   this.answersStyle = {
     a:'label-default',
@@ -33,17 +34,37 @@ angular.module('flash-card')
     d:'label-default',
     e:'label-default',
   };
+  this.correctAnswerStyle = 'label-success';
+  this.answerMessage = '';
+
   this.counter = 0;
+
+  $scope.$on('clickShuffle', function(event, data) {
+    model.startOver();
+  });
+
+  this.startOver = function () {
+    this.shuffledDeck = shuffleDeck(this.deck.cards);
+    this.current = this.shuffledDeck[0];
+    this.front = true;
+    this.flipped = false;
+    this.theEnd = false;
+    this.showPrev = false;
+    this.counter = 0;
+    $scope.$broadcast('onClickNext', 0);
+  };
 
   var resetConditionToInitialState = {
     'handleNext' : function (studyControllerVariables) {
       var that = studyControllerVariables;
-      if (that.counter === that.shuffledDeck.length - 2) {
+      if (that.counter === that.shuffledDeck.length - 1) {
         that.showNext = false;
       }
+
       that.showPrev = true;
       that.counter++;
       this.setToInitialState(studyControllerVariables);
+
     },
     'handlePrev' : function (studyControllerVariables) {
       var that = studyControllerVariables;
@@ -60,21 +81,34 @@ angular.module('flash-card')
       that.flipped = false;
       that.current = that.shuffledDeck[that.counter];
       that.highlightingHelperFn(that.current.front);
+    },
+    showTheEnd: function (studyControllerVariables) {
+      var that = studyControllerVariables;
+      that.theEnd = true;
     }
   }
 
   this.handleNext = () => {
-    resetConditionToInitialState['handleNext'](this);
+    if(this.counter+1 > this.shuffledDeck.length-1) {
+      resetConditionToInitialState['showTheEnd'](this);
+    } else {
+      console.log(this.shuffledDeck.length)
+      resetConditionToInitialState['handleNext'](this);
+    }
+
+    // broadcast the current counter so the progress tracker can be updated
     $scope.$broadcast('onClickNext', this.counter+1);
   };
 
   this.handlePrev = () => {
     resetConditionToInitialState['handlePrev'](this);
+    // broadcast the current counter so the progress tracker can be updated
     $scope.$broadcast('onClickPrev', this.counter+1);
   };
 
   this.flip = () => {
     //Helper fn written to make flipping easier/DRY code
+    console.log('flip called');
     this.front = !this.front;
     this.flipped = !this.flipped;
 
@@ -85,24 +119,40 @@ angular.module('flash-card')
     }
   };
 
-  this.handleFlip = (ans) => {
+  this.handleFlipBasic = () => {
     if (this.deck.cardType == 'basic') {
       this.flip();
-    } else {
-      if (!this.front) {
-        //On other card types, allow flipping from the back side.
-        this.flip();
+    }
+  };
 
+  this.handleFlipMC = (ans) => {
+    var rightAnswer = this.current.data.correctOption;
+
+    if (this.front && ans) {
+      if (ans == rightAnswer) {
+        //Generate correct styling and text for correct answer
+        this.correctAnswerStyle = 'label-success';
+        this.answerMessage = 'Correct! ' + rightAnswer.toUpperCase() + ' is the right answer!';
       } else {
-        //On the front side of MC card, make sure an answer was passed in to this call before we flip:
-        if (ans) {
-          console.log('handleFlip called on non basic card with char passed in: ', ans);
-          this.flip();
-        }
+        //Generate styling and message for wrong answer
+        this.correctAnswerStyle = 'label-danger';
+        this.answerMessage = 'Incorrect! ' + rightAnswer.toUpperCase() + ' is the right answer';
       }
+
+    } else {
+      //Reset styles for choices
+      this.answersStyle = {
+        a:'label-default',
+        b:'label-default',
+        c:'label-default',
+        d:'label-default',
+        e:'label-default',
+      };
     }
 
-  };
+    this.flip();
+
+  }
 
   // this.handleFlipMC = function (ans) {
   //   console.log('MC Flip FN Called', ans, this.front, this.flipped);
