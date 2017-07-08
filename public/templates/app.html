@@ -22,7 +22,7 @@
         <td>{{ deck.groupname }}</td>
         <td><button class="buttonInTable btn btn-primary" ng-click="app.getDeck(deck)"><a class="clickButton" href="/study">Study</a></button></td>
         <td><button class="buttonInTable btn btn-info" ng-click="app.getDeck(deck)"><a class="clickButton" href="/edit">Edit</a></button></td>
-        <td><button class="buttonInTable btn btn-danger" ng-click="app.handleDelete(deck)">Delete</button></td>
+        <td><button class="deletekey buttonInTable btn btn-danger" ng-click="app.handleDelete(deck)">Delete</button></td>
       </tr>
 
       <tr><h5 ng-if="app.decks.length === 0">No saved decks, create a new deck to get started!</h5></tr>

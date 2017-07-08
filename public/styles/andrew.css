@@ -1,4 +1,12 @@
 /*andrew */
+a {
+  color: white;
+  text-decoration: none;
+}
+
+a:hover {
+  color:white;
+}
 
 .deck-list-entry {
   cursor: auto;
@@ -21,4 +29,10 @@
 
 .clickButton {
   color: white;
+  text-decoration: none;
+}
+
+.deletekey:hover {
+  color: white;
+  text-decoration: underline;
 }
