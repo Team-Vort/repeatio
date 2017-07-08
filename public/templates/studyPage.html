@@ -1,16 +1,29 @@
-<div ng-controller="StudyCtrl as study">
-  <div>
-    <progress-tracker />
-  </div>
-  <div class="flip">
-    <div class="card panel panel-default" ng-class="{'flipped':study.flipped}" ng-click="study.handleFlip()">
-      <div class="studycard face front panel-body" ng-if="study.front"><h3>{{ study.current.data.question }}</h3></div>
-      <div class="studycard face back panel-body" ng-if="!study.front">
-        <h3>{{ study.current.data.answer }}</h3>
+<div class="container" ng-controller="StudyCtrl as study">
+  <div class="row">
+    <div class="col-md-2 col-md-offset-1">
+      <progress-tracker />
+    </div>
 
-        <!-- Multiple Choice Answer Data -->
-        <span class="label label-success" ng-show="study.deck.cardType === 'multiple choice'">{{'Correct Answer: ' + study.current.data.correctOption.toUpperCase()}}</span>
+    <div class="col-md-6" class="flip" ng-if="!study.theEnd">
+      <div class="card panel panel-default" ng-class="{'flipped':study.flipped}" ng-click="study.handleFlip()">
+        <div class="studycard face front panel-body" ng-if="study.front"><h3>{{ study.current.data.question }}</h3></div>
+        <div class="studycard face back panel-body" ng-if="!study.front">
+          <h3>{{ study.current.data.answer }}</h3>
 
+          <!-- Multiple Choice Answer Data -->
+          <span class="label label-success" ng-show="study.deck.cardType === 'multiple choice'">{{'Correct Answer: ' + study.current.data.correctOption.toUpperCase()}}</span>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6" class="the-end-card" ng-if="study.theEnd">
+      <div class="studycard face front">
+        <h2 class="deck-finished-message"> Schweet!</h2>
+        <h3 class="deck-finished-generic-message"> You've finished the deck. </h3>
+        <div class="" ng-if="study.theEnd">
+          <button type="button" class="btn btn-primary" id="start-over" ng-click="study.startOver()"> Start Over </button>
+        </div>
       </div>
     </div>
   </div>
@@ -18,7 +31,7 @@
   <div class="row">
     <div class="divParent">
       <div class="text-center col-xs-4">
-        <div class="btn-group" role="group">
+        <div class="btn-group" role="group" ng-if="!study.theEnd">
         <button type="button" class="btn btn-default btn-info" id="previous" ng-disabled="!study.showPrev" ng-click="study.handlePrev()">Previous card</button>
         <button type="button" class="btn btn-default btn-primary" id="next" ng-disabled="!study.showNext" ng-click="study.handleNext()">Next card</button>
         </div>

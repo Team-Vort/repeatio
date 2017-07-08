@@ -22,7 +22,11 @@
     })
 
     model.totalCards = getCurrentDecksCardsLength();
-  }
+
+    model.shuffleDeck = function () {
+      $scope.$emit('clickShuffle', 'shuffleDeck')
+    };
+  };
 
   module.component('progressTracker', {
     templateUrl: '../templates/progress-tracker.component.html',
