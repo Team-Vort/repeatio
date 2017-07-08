@@ -28,8 +28,7 @@ angular.module('flash-card')
     console.log('populateCard was called in createPage.js')
     if(this.deck.cardType === 'basic') {
       if(!dataObj.question || !dataObj.answer) {
-        alert("Please fill out a card");
-        return;
+        return false;
       } else {
         this.newCard.data = {};
         this.newCard.data['question'] = dataObj['question'];
@@ -41,9 +40,8 @@ angular.module('flash-card')
     }
 
     if(this.deck.cardType === 'multiple choice') {
-      if(!dataObj.answer || !dataObj.question) {
-        alert("Please fill out required fields");
-        return;
+      if(!dataObj.answer || !dataObj.question || !dataObj.options.a || !dataObj.options.b) {
+        return false;
       } else {
 
         //Make a copy of the object
@@ -62,6 +60,7 @@ angular.module('flash-card')
       }
     }
     this.addCard(this.newCard);
+    return true;
   }.bind(this);
 
   // -------------------------------------------

@@ -1,4 +1,30 @@
 <div class="row">
+
+  <div class="spacer-block">
+  </div>
+
+<!-- Alert message to displa if not all data is entered -->
+  <div class="row text-center">
+    <div class="alert alert-warning alert-dismissible fade in" role="alert" ng-show="$ctrl.showFieldsAlert">
+      <button type="button" class="close" aria-label="Close" ng-click="$ctrl.showFieldsAlert = false;">
+        <span aria-hidden="true">×</span>
+      </button>
+      <strong>Whoa!  </strong>
+      Looks Like you didn't enter all required data.  Be sure to enter a question and answer field, as well as at least two possible answers to choose from.
+    </div>
+  </div>
+
+  <!-- Success Message to show when card is added to deck -->
+    <div class="row text-center">
+      <div class="alert alert-success alert-dismissible fade in" role="alert" ng-show="$ctrl.showSentMsg">
+        <button type="button" class="close" aria-label="Close" ng-click="$ctrl.showFieldsAlert = false;">
+          <span aria-hidden="true">×</span>
+        </button>
+        <strong>Success!  </strong>
+        Card added to the current Deck!
+      </div>
+    </div>
+
   <div class="col-xs-5 flashcard">
     <h4>Question</h4>
     <hr>
@@ -88,19 +114,9 @@
 <!-- Submit Card Button -->
 <div class="row text-center" ng-show="!$ctrl.hideSubmit">
 
-  <button class="btn btn-primary" ng-click="$ctrl.populateCard($ctrl.card); $ctrl.clearFields(); $ctrl.toggleSentMsg();">
+  <button class="btn btn-primary" ng-click="$ctrl.clearFields($ctrl.populateCard($ctrl.card));">
 
     Submit Card
   </button>
-
-  <!-- Warning to display after each card is added -->
-  <div class="row text-center" ng-if="$ctrl.showSentMsg">
-    <h3>
-      <span class="label label-warning">
-        New Card Added to Deck!
-      </span>
-    </h3>
-  </div>
-
 
 </div>

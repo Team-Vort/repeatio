@@ -2,6 +2,8 @@ angular.module('flash-card')
 
 .controller('LoginCtrl', function(loginSvc, $location, $http, $scope){
   $scope.currentUserEmail;
+  this.showBadLogin = false;
+
   this.login = function() {
     var that = this;
     loginName = this.loginName;
@@ -17,7 +19,7 @@ angular.module('flash-card')
           $location.path('/app');
         }, function(error) {console.error(error);});
       } else if (res.data === 'NO') {
-        alert('Incorrect username or password, please try again.');
+        that.showBadLogin = true;
         that.loginPw = '';
         $('#loginName').focus();
       }
