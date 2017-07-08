@@ -15,9 +15,7 @@ angular.module('flash-card')
     "multiple choice" - flashcard with up to 5 answer options and only one correct answer
     "true/false" - flashcard with a binary true/false answer
     "short answer" - flashcard with textbox for answers.
-
     For basic, image, and short answer cards, the user must self-grade.  Multiple choice and true/false answers are automatically graded.
-
   */
   this.defaultCardData = {
     basic: {
