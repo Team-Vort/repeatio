@@ -1,6 +1,6 @@
 angular.module('flash-card')
 
-.controller('LoginCtrl', function(loginSvc, $location, $http, $scope){
+.controller('LoginCtrl', function(loginSvc, $location, $http, $scope, $rootScope){
   $scope.currentUserEmail;
   this.showBadLogin = false;
 
@@ -14,6 +14,7 @@ angular.module('flash-card')
         console.error(res.error);
       } else if (res.data === 'OK') {
         $http.get('/decks', {params: {username: loginName}}).then(function(response) {
+          $rootScope.showNavOptions = true;
           localStorage.setItem('currentUser', loginName);
           localStorage.setItem('decks', JSON.stringify(response.data));
           $location.path('/app');
@@ -51,11 +52,13 @@ angular.module('flash-card')
   }
 
   this.signup = function() {
+
     var that = this;
     accName = this.accName;
     accPw = this.accPw;
     accVerifyPw = this.accVerifyPw;
     loginSvc.signup(accName, accPw, function(res) {
+      $rootScope.showNavOptions = true;
       if (this.accPw !== this.accVerifyPw && res.data === 'NO') {
         alert('Username taken; please try another username.');
         that.accName = '';
@@ -83,11 +86,13 @@ angular.module('flash-card')
   };
 
   $scope.show = false;
-  // $scope.email;
+
   $scope.resetCode;
   $scope.forgotPassword = function(){
-    // this.email = prompt('What is the email associated with your account?');
-    // $scope.email = this.email;
+
+    if($scope.currentUserEmail === undefined){
+      return alert("Please attempt to login with your email at least once.")
+    }
     $("body").css("cursor", "wait");
     $(".forgot-password").css("cursor", "wait");
     this.resetCode = Math.floor(Math.random() * 1000000);
