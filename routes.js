@@ -148,7 +148,7 @@ router.post('/reset', function(req, res){
   UserFile.User.findOne({
     username: req.body.username
   }).then(function(user) {
-    if(user !== null){
+    if(user !== null && (req.body.userResetCode == req.body.systemResetCode)){
       bcrypt.genSalt(saltRounds, function(err, salt) {
         bcrypt.hash(req.body.password, salt, function(err, hash){
           if(err){
@@ -157,10 +157,18 @@ router.post('/reset', function(req, res){
             UserFile.User.findOne({username: req.body.username}, function(err, doc){
               doc.password = hash;
               doc.save();
+              res.json("SUCCESS");
             })
           }
         })
       })
+    }else if(user === null){
+      res.json('NO_USER');
+    }else if(req.body.userResetCode != req.body.systemResetCode){
+      console.log("userResetCode: ", req.body.userResetCode);
+      console.log("systemResetCode: ", req.body.systemResetCode);
+      console.log(req.body.userResetCode == req.body.systemResetCode)
+      res.json('INCORRECT_CODE');
     }
   })
 })
