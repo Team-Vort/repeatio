@@ -84,11 +84,13 @@ angular.module('flash-card')
   };
 
   $scope.show = false;
-  // $scope.email;
+
   $scope.resetCode;
   $scope.forgotPassword = function(){
-    // this.email = prompt('What is the email associated with your account?');
-    // $scope.email = this.email;
+
+    if($scope.currentUserEmail === undefined){
+      return alert("Please attempt to login with your email at least once.")
+    }
     $("body").css("cursor", "wait");
     $(".forgot-password").css("cursor", "wait");
     this.resetCode = Math.floor(Math.random() * 1000000);

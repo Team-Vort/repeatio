@@ -36,3 +36,11 @@ a:hover {
   color: white;
   text-decoration: underline;
 }
+
+.label {
+  cursor: pointer;
+}
+
+.category {
+  cursor: pointer;
+}

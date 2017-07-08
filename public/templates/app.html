@@ -3,7 +3,7 @@
   <h3>Choose a Category</h3>
   <table class="table table-striped table-bordered table-hover">
     <tr ng-repeat="group in app.categories" class="deck-list-entry">
-      <td ng-click="app.getGroupDecks(group)">{{ group.group }}</td>
+      <td class="category" ng-click="app.getGroupDecks(group)">{{ group.group }}</td>
     </tr>
 
     <tr><h5 ng-if="app.decks.length === 0">No saved decks, create a new deck to get started!</h5></tr>
