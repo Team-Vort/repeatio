@@ -1,7 +1,7 @@
 /*andrew */
 
 .deck-list-entry {
-  cursor: pointer;
+  cursor: auto;
 }
 
 .choose-deck-table-titles {
@@ -13,4 +13,8 @@
 .forgot-password {
   cursor: pointer;
   text-decoration: underline;
+}
+
+.deck-table {
+  cursor: auto;
 }

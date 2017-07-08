@@ -1,6 +1,6 @@
 angular.module('flash-card')
 
-.controller('LoginCtrl', function(loginSvc, $location, $http, $scope){
+.controller('LoginCtrl', function(loginSvc, $location, $http, $scope, $rootScope){
   $scope.currentUserEmail;
   this.login = function() {
     var that = this;
@@ -12,6 +12,7 @@ angular.module('flash-card')
         console.error(res.error);
       } else if (res.data === 'OK') {
         $http.get('/decks', {params: {username: loginName}}).then(function(response) {
+          $rootScope.showNavOptions = true;
           localStorage.setItem('currentUser', loginName);
           localStorage.setItem('decks', JSON.stringify(response.data));
           $location.path('/app');
@@ -49,11 +50,13 @@ angular.module('flash-card')
   }
 
   this.signup = function() {
+
     var that = this;
     accName = this.accName;
     accPw = this.accPw;
     accVerifyPw = this.accVerifyPw;
     loginSvc.signup(accName, accPw, function(res) {
+      $rootScope.showNavOptions = true;
       if (this.accPw !== this.accVerifyPw && res.data === 'NO') {
         alert('Username taken; please try another username.');
         that.accName = '';
