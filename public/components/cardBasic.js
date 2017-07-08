@@ -1,6 +1,21 @@
 angular.module('flash-card')
 .controller('CardBasicCtrl', function() {
 
+  this.clearFields = function() {
+    this.card = {
+      question: '',
+      answer: '',
+      correctOption: 'a',
+      options: {
+        a: '',
+        b: '',
+        c: '',
+        d: '',
+        e: ''
+      }
+    };
+  };
+
 })
 
 .component('cardBasic', {

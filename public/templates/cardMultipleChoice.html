@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-xs-5 flashcard">
     <h4>Question</h4>
-    <hr>
+
     <textarea placeholder="Enter a question" ng-model="$ctrl.card.question" id="createQuestionField"></textarea>
 
 
@@ -10,36 +10,59 @@
       <div class="row text-center">
         <i>Enter at least two and up to five answers.  You may only mark one answer as correct.</i>
 
+        <div class="input-group-btn" ng-show="$ctrl.editable">
+          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <span class="caret"></span> Select Correct Answer
+          </button>
+          <ul class="dropdown-menu">
+            <li ng-show="$ctrl.card.options.a" ng-click="$ctrl.setCorrectAnswer('a')"><a href="#">A</a></li>
+            <li ng-show="$ctrl.card.options.b" ng-click="$ctrl.setCorrectAnswer('b')"><a href="#">B</a></li>
+            <li ng-show="$ctrl.card.options.c" ng-click="$ctrl.setCorrectAnswer('c')"><a href="#">C</a></li>
+            <li ng-show="$ctrl.card.options.d" ng-click="$ctrl.setCorrectAnswer('d')"><a href="#">D</a></li>
+            <li ng-show="$ctrl.card.options.e" ng-click="$ctrl.setCorrectAnswer('e')"><a href="#">E</a></li>
+          </ul>
+        </div><!-- /btn-group -->
+
       </div>
-      <div class="input-group text-center">
+   <!--    <div class="input-group text-center"> -->
 
         <div class="row text-center">
-        <h4>A:</h4>
-          <input type="text" class="form-control" ng-model="$ctrl.card.options.a" ng-click="$ctrl.setCorrectAnswer('a')" ng-disabled="!$ctrl.editable" aria-label="...">
+          <span class="input-group-addon">
+            A:
+          </span>
+          <input type="text" class="form-control" ng-model="$ctrl.card.options.a" ng-disabled="!$ctrl.editable" aria-label="...">
         </div>
 
         <div class="row text-center">
-          <h4>B:</h4>
-          <input type="text" class="form-control" ng-model="$ctrl.card.options.b" ng-click="$ctrl.setCorrectAnswer('b')" ng-disabled="!$ctrl.editable" aria-label="...">
+          <span class="input-group-addon">
+            B:
+          </span>
+          <input type="text" class="form-control" ng-model="$ctrl.card.options.b" ng-disabled="!$ctrl.editable" aria-label="...">
         </div>
 
         <div class="row text-center">
-          <h4>C:</h4>
-          <input type="text" class="form-control" ng-model="$ctrl.card.options.c" ng-click="$ctrl.setCorrectAnswer('c')" ng-disabled="!$ctrl.editable" aria-label="...">
+          <span class="input-group-addon">
+            C:
+          </span>
+          <input type="text" class="form-control" ng-model="$ctrl.card.options.c" ng-disabled="!$ctrl.editable" aria-label="...">
         </div>
 
         <div class="row text-center">
-          <h4>D:</h4>
-          <input type="text" class="form-control" ng-model="$ctrl.card.options.d" ng-click="$ctrl.setCorrectAnswer('d')" ng-disabled="!$ctrl.editable" aria-label="...">
+          <span class="input-group-addon">
+            D:
+          </span>
+          <input type="text" class="form-control" ng-model="$ctrl.card.options.d" ng-disabled="!$ctrl.editable" aria-label="...">
         </div>
 
         <div class="row text-center">
-          <h4>E:</h4>
-          <input type="text" class="form-control" ng-model="$ctrl.card.options.e" ng-click="$ctrl.setCorrectAnswer('e')" ng-disabled="!$ctrl.editable" aria-label="...">
+          <span class="input-group-addon">
+            E:
+          </span>
+          <input type="text" class="form-control" ng-model="$ctrl.card.options.e" ng-disabled="!$ctrl.editable" aria-label="...">
         </div>
 
 
-      </div><!-- /input-group -->
+      <!-- /input-group -->
 
     </div>
     <!-- END Multiple Choice area -->
@@ -51,32 +74,23 @@
     <hr>
     <textarea placeholder="Enter the answer" ng-model="$ctrl.card.answer"></textarea>
 
-    <div class="input-group-btn" ng-show="$ctrl.editable">
-      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Select Correct Answer <span class="caret"></span></button>
-      <ul class="dropdown-menu">
-        <li ng-show="$ctrl.card.options.a" ng-click="$ctrl.setCorrectAnswer('a')"><a href="#">A</a></li>
-        <li ng-show="$ctrl.card.options.b" ng-click="$ctrl.setCorrectAnswer('b')"><a href="#">B</a></li>
-        <li ng-show="$ctrl.card.options.c" ng-click="$ctrl.setCorrectAnswer('c')"><a href="#">C</a></li>
-        <li ng-show="$ctrl.card.options.d" ng-click="$ctrl.setCorrectAnswer('d')"><a href="#">D</a></li>
-        <li ng-show="$ctrl.card.options.e" ng-click="$ctrl.setCorrectAnswer('e')"><a href="#">E</a></li>
-      </ul>
-    </div><!-- /btn-group -->
 
+    <!-- Multiple Choice Answer Data -->
     <div class="row text-center">
-      <div class="panel panel-primary">
-        <div class="panel-heading text-center">
-        {{'Correct Answer: ' + $ctrl.card.correctOption.toUpperCase()}}
-        </div>
-      </div>
+      <h1>
+        <span class="label label-success">{{'Correct Answer: ' + $ctrl.card.correctOption.toUpperCase()}}
+        </span>
+      </h1>
     </div>
-
   </div>
 
 </div>
 
 <!-- Submit Card Button -->
 <div class="row text-center" ng-show="!$ctrl.hideSubmit">
-  <button class="btn btn-primary btn-lg" ng-click="$ctrl.populateCard($ctrl.card)">
+
+  <button class="btn btn-primary" ng-click="$ctrl.populateCard($ctrl.card); $ctrl.clearFields();">
+
     Submit Card
   </button>
 </div>

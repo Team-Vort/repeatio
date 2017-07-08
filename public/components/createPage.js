@@ -7,6 +7,7 @@ angular.module('flash-card')
   };
   this.newDeck.cards = [];
   this.newCard = {plaintextFront: true, plaintextBack: true};
+  this.showSubmitMsg = false;
   this.typeSelected = false;
   //Do not modify cardType directly, use getters and setters.
   /* Card types:
@@ -15,9 +16,7 @@ angular.module('flash-card')
     "multiple choice" - flashcard with up to 5 answer options and only one correct answer
     "true/false" - flashcard with a binary true/false answer
     "short answer" - flashcard with textbox for answers.
-
     For basic, image, and short answer cards, the user must self-grade.  Multiple choice and true/false answers are automatically graded.
-
   */
   this.defaultCardData = {
     basic: {
@@ -25,19 +24,23 @@ angular.module('flash-card')
       answer: ''
     },
     multipleChoice: {
-      question: 'Enter A question here',
-      answer: 'Enter the message to be displayed for a correct answer here.',
+      question: '',
+      answer: '',
       correctOption: 'a',
       options: {
-        a: 'foo',
-        b: 'bar',
-        c: 'this = that',
-        d: '0/0',
-        e: 'NaN == NaN'
+        a: '',
+        b: '',
+        c: '',
+        d: '',
+        e: ''
       }
     }
   };
 
+  // Will show a message indicating card was submitted (not done)
+  this.toggleSubmitMsg = function() {
+    this.showSubmitMsg = !this.showSubmitMsg;
+  }.bind(this);
 
   this.getCardType = function() {
     //This returns a copy of the string so it cannot be mutated
@@ -84,7 +87,7 @@ angular.module('flash-card')
     }
 
     if(this.newDeck.cardType === 'multiple choice') {
-      if(!dataObj.answer || !dataObj.question) {
+      if(!dataObj.answer || !dataObj.question || !dataObj.options.a || !dataObj.options.b) {
         alert("Please fill out required fields");
         return;
       } else {
@@ -112,6 +115,10 @@ angular.module('flash-card')
     //set card type on newCard.
     this.newDeck.cards.push(newCard);
     console.log('Card was just added to new deck: ', this.newDeck);
+    //These two lines are used to display a brief message
+    //indicating the submission of a new card with ng-show
+    // this.toggleSubmitMsg();
+
     this.newCard = {plaintextFront: true, plaintextBack: true};
     $('#createQuestionField').focus();
 
@@ -131,6 +138,7 @@ angular.module('flash-card')
           $location.path('/app');
         }, function(err) {console.error('handleSave, CREATE', err);});
       });
+
     }
   };
 
