@@ -4,15 +4,54 @@
   </div>
   <div class="flip">
     <div class="card panel panel-default" ng-class="{'flipped':study.flipped}" ng-click="study.handleFlip()">
-      <div class="studycard face front panel-body" ng-if="study.front"><h3>{{ study.current.data.question }}</h3></div>
+      <div class="studycard face front panel-body" ng-if="study.front">
+        <h3>{{ study.current.data.question }}</h3>
+
+        <!-- Multiple Choice Options -->
+        <div class="row text-center" ng-show="study.deck.cardType === 'multiple choice'">
+          <h4>
+            <span class="label" ng-class="study.answersStyle.a" ng-click="study.handleFlip('a')" ng-mouseenter="study.answersStyle.a = 'label-success'" ng-mouseleave="study.answersStyle.a = 'label-default'">{{'A: ' + study.current.data.options.a}}
+            </span>
+          </h4>
+
+
+
+          <h4>
+            <span class="label" ng-class="study.answersStyle.b" ng-mouseenter="study.answersStyle.b = 'label-success'" ng-mouseleave="study.answersStyle.b = 'label-default'" ng-click="study.handleFlip('b')">{{'B: ' + study.current.data.options.b}}
+            </span>
+          </h4>
+
+          <h4>
+            <span class="label" ng-show="study.current.data.options.c" ng-class="study.answersStyle.c" ng-mouseenter="study.answersStyle.c = 'label-success'" ng-mouseleave="study.answersStyle.c = 'label-default'" ng-click="study.handleFlip('c')">{{'C: ' + study.current.data.options.c}}
+            </span>
+          </h4>
+
+          <h4>
+            <span class="label" ng-show="study.current.data.options.d" ng-class="study.answersStyle.d" ng-mouseenter="study.answersStyle.d = 'label-success'" ng-mouseleave="study.answersStyle.d = 'label-default'" ng-click="study.handleFlip('d')">{{'D: ' + study.current.data.options.d}}
+            </span>
+          </h4>
+
+          <h4>
+            <span class="label" ng-show="study.current.data.options.e" ng-class="study.answersStyle.e" ng-mouseenter="study.answersStyle.e = 'label-success'" ng-mouseleave="study.answersStyle.e = 'label-default'" ng-click="study.handleFlip('e')">{{'E: ' + study.current.data.options.e}}
+            </span>
+          </h4>
+        </div>
+
+
+
+
+      </div>
       <div class="studycard face back panel-body" ng-if="!study.front">
         <h3>{{ study.current.data.answer }}</h3>
 
         <!-- Multiple Choice Answer Data -->
-        <h1 ng-show="study.deck.cardType === 'multiple choice'">
-          <span class="label label-success">{{'Correct Answer: ' + study.current.data.correctOption.toUpperCase()}}
-          </span>
-        </h1>
+        <div class="row text-center" ng-show="study.deck.cardType === 'multiple choice'">
+          <h1>
+            <span class="label label-success">{{'Correct Answer: ' + study.current.data.correctOption.toUpperCase()}}
+            </span>
+          </h1>
+        </div>
+
 
       </div>
     </div>

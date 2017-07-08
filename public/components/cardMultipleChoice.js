@@ -15,18 +15,20 @@ angular.module('flash-card')
   //   }
   // };
 
-  this.isTwoOptions = function() {
-    var cnt = 0;
-
-    for (var k in this.dataObj.options) {
-      if(this.options[k]) {
-        cnt++;
+  this.clearFields = function() {
+    this.card = {
+      question: '',
+      answer: '',
+      correctOption: 'a',
+      options: {
+        a: '',
+        b: '',
+        c: '',
+        d: '',
+        e: ''
       }
-    }
-
-    return cnt >= 2 ? true : false;
+    };
   };
-
 
   this.setCorrectAnswer = function (ans) {
     this.card.correctOption = ans;
