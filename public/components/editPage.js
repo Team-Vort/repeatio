@@ -7,15 +7,15 @@ angular.module('flash-card')
 
   this.defaultCardData = {
     multipleChoice: {
-      question: 'Enter A question here',
-      answer: 'Enter the message to be displayed for a correct answer here.',
-      correctOption: 'a',
+      question: '',
+      answer: '',
+      correctOption: '',
       options: {
-        a: 'foo',
-        b: 'bar',
-        c: 'this = that',
-        d: '0/0',
-        e: 'NaN == NaN'
+        a: '',
+        b: '',
+        c: '',
+        d: '',
+        e: ''
       }
     }
   };

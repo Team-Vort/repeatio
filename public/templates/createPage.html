@@ -20,29 +20,23 @@
 
     <h4>CATEGORY:</h4> <span> <input class="create-type" placeholder="Enter category" ng-model="create.newDeck.groupname" required /> </span>
 
+    <!-- The row here is to show a message on card submit (not implemented yet) -->
+    <div class="row text-center" ng-show="create.showSubmitMsg">
+      <h3>
+        <span class="label label-warning">
+          Card Submitted!
+        </span>
+      </h3>
+    </div>
+
     <!-- All card types -->
-    <div class="card-type-div" >
+    <div class="card-type-div" class="card-area">
       <card-basic populate-card="create.populateCard" ng-show="create.newDeck.cardType === 'basic'"/>
     </div>
 
     <div class="card-type-div">
       <card-multiple-choice populate-card="create.populateCard" editable="true" card="create.defaultCardData.multipleChoice" ng-show="create.newDeck.cardType === 'multiple choice'"/>
     </div>
-<!--
-    <div class="card-type-div" >
-      <card-image ng-show="create.newDeck.cardType === 'image'"/>
-    </div>
-
-
-
-    <div class="card-type-div">
-      <card-short-answer ng-show="create.newDeck.cardType === 'short answer'"/>
-    </div>
-
-    <div class="card-type-div">
-      <card-true-false ng-show="create.newDeck.cardType === 'true/false'"/>
-    </div> -->
-    <!-- End of CARD TYPES -->
 
 
     <!-- Moved add card button to each card type controller -->
@@ -62,49 +56,7 @@
           <card-multiple-choice populate-card="create.populateCard" card="card.data" editable="true" hide-submit="true" ng-show="create.newDeck.cardType === 'multiple choice'"/>
         </div>
 
-   <!--      <div class="card-type-div">
-          <card-image ng-show="create.newDeck.cardType === 'image'"/>
-        </div>
 
-        <div class="card-type-div">
-          <card-short-answer ng-show="create.newDeck.cardType === 'short answer'"/>
-        </div>
-
-        <div class="card-type-div" >
-          <card-true-false ng-show="create.newDeck.cardType === 'true/false'"/>
-        </div> -->
-        <!-- End of CARD TYPES -->
-
-
-
-        <!-- OLD code for hard-coded feed.  Need to show different controllers based on type of each card -->
-        <!-- <div class="row">
-          <div class="col-xs-5 flashcard">
-            <h4>Question</h4>
-
-            <div class="codeToggleBtn">
-              <button ng-click="create.toggleHighlightFront(card)" ng-class="{'btn': card.plaintextFront, 'btn btn-success': !card.plaintextFront}">
-                <span class="fa fa-code"></span>
-              </button>
-            </div>
-
-            <hr>
-            <textarea placeholder=" Enter a question" ng-model="card.front" ></textarea>
-          </div>
-
-          <div class="col-xs-5 flashcard">
-            <h4>Answer</h4>
-
-            <div class="codeToggleBtn">
-              <button ng-click="create.toggleHighlightBack(card)" ng-class="{'btn': card.plaintextBack, 'btn btn-primary': !card.plaintextBack}">
-                <span class="fa fa-code"></span>
-              </button>
-            </div>
-
-            <hr>
-            <textarea placeholder=" Enter the answer" ng-model="card.back"></textarea>
-          </div>
-        </div> -->
 
         <button class="btn btn-danger" ng-click="create.deleteCard(card)">Delete card</button>
         <button class="btn" ng-click="create.moveUp(card)"><span class="fa fa-angle-up"></span></button>
