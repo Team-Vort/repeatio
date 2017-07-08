@@ -26,6 +26,13 @@ angular.module('flash-card')
   this.front = true;
   this.flipped = false;
 
+  this.answersStyle = {
+    a:'label-default',
+    b:'label-default',
+    c:'label-default',
+    d:'label-default',
+    e:'label-default',
+  };
   this.counter = 0;
 
   var resetConditionToInitialState = {
@@ -66,7 +73,8 @@ angular.module('flash-card')
     $scope.$broadcast('onClickPrev', this.counter+1);
   };
 
-  this.handleFlip = () => {
+  this.flip = () => {
+    //Helper fn written to make flipping easier/DRY code
     this.front = !this.front;
     this.flipped = !this.flipped;
 
@@ -76,6 +84,38 @@ angular.module('flash-card')
       this.highlightingHelperFn(this.current.back);
     }
   };
+
+  this.handleFlip = (ans) => {
+    if (this.deck.cardType == 'basic') {
+      this.flip();
+    } else {
+      if (!this.front) {
+        //On other card types, allow flipping from the back side.
+        this.flip();
+
+      } else {
+        //On the front side of MC card, make sure an answer was passed in to this call before we flip:
+        if (ans) {
+          console.log('handleFlip called on non basic card with char passed in: ', ans);
+          this.flip();
+        }
+      }
+    }
+
+  };
+
+  // this.handleFlipMC = function (ans) {
+  //   console.log('MC Flip FN Called', ans, this.front, this.flipped);
+  //   this.front = !this.front;
+  //   this.flipped = !this.flipped;
+  //   console.log('After flip: ', this.front, this.back);
+
+  //   if (this.front === true && this.flipped === false) {
+  //     this.highlightingHelperFn(this.current.front);
+  //   } else {
+  //     this.highlightingHelperFn(this.current.back);
+  //   }
+  // };
 
   //-------------------------------------------------------------------------------------
   /*  This function essentially:

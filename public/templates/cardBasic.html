@@ -12,21 +12,6 @@
   </div>
 </div>
 <div class="row text-center">
-  <button class="btn btn-primary " ng-show="!$ctrl.hideSubmit" ng-click="$ctrl.populateCard($ctrl.card)">
-    Submit Card
+  <button class="btn btn-primary" ng-show="!$ctrl.hideSubmit" ng-click="$ctrl.populateCard($ctrl.card); $ctrl.clearFields();">    Submit Card
   </button>
 </div>
-
-<!-- <div class="row">
-  <div class="col-xs-5 flashcard">
-    <h4>Question</h4>
-    <hr>
-    <textarea placeholder="Enter a question" ng-model="create.newCard.front" id="createQuestionField"></textarea>
-</div>
-
-  <div class="col-xs-5 flashcard">
-    <h4>Answer</h4>
-    <hr>
-    <textarea placeholder="Enter the answer" ng-show="create.getCardType() ==='basic';" ng-keyup="$event.keyCode == 13 && create.addCard(create.newCard)" ng-model="create.newCard.back"></textarea>
-  </div>
-</div> -->
