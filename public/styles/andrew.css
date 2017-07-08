@@ -1,7 +1,15 @@
 /*andrew */
+a {
+  color: white;
+  text-decoration: none;
+}
+
+a:hover {
+  color:white;
+}
 
 .deck-list-entry {
-  cursor: pointer;
+  cursor: auto;
 }
 
 .choose-deck-table-titles {
@@ -13,4 +21,26 @@
 .forgot-password {
   cursor: pointer;
   text-decoration: underline;
+}
+
+.deck-table {
+  cursor: auto;
+}
+
+.clickButton {
+  color: white;
+  text-decoration: none;
+}
+
+.deletekey:hover {
+  color: white;
+  text-decoration: underline;
+}
+
+.label {
+  cursor: pointer;
+}
+
+.category {
+  cursor: pointer;
 }
