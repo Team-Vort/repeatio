@@ -33,6 +33,9 @@ angular.module('flash-card')
     d:'label-default',
     e:'label-default',
   };
+  this.correctAnswerStyle = 'label-success';
+  this.answerMessage = '';
+
   this.counter = 0;
 
   var resetConditionToInitialState = {
@@ -75,6 +78,7 @@ angular.module('flash-card')
 
   this.flip = () => {
     //Helper fn written to make flipping easier/DRY code
+    console.log('flip called');
     this.front = !this.front;
     this.flipped = !this.flipped;
 
@@ -85,24 +89,40 @@ angular.module('flash-card')
     }
   };
 
-  this.handleFlip = (ans) => {
+  this.handleFlipBasic = () => {
     if (this.deck.cardType == 'basic') {
       this.flip();
-    } else {
-      if (!this.front) {
-        //On other card types, allow flipping from the back side.
-        this.flip();
+    }
+  };
 
+  this.handleFlipMC = (ans) => {
+    var rightAnswer = this.current.data.correctOption;
+
+    if (this.front && ans) {
+      if (ans == rightAnswer) {
+        //Generate correct styling and text for correct answer
+        this.correctAnswerStyle = 'label-success';
+        this.answerMessage = 'Correct! ' + rightAnswer.toUpperCase() + ' is the right answer!';
       } else {
-        //On the front side of MC card, make sure an answer was passed in to this call before we flip:
-        if (ans) {
-          console.log('handleFlip called on non basic card with char passed in: ', ans);
-          this.flip();
-        }
+        //Generate styling and message for wrong answer
+        this.correctAnswerStyle = 'label-danger';
+        this.answerMessage = 'Incorrect! ' + rightAnswer.toUpperCase() + ' is the right answer';
       }
+
+    } else {
+      //Reset styles for choices
+      this.answersStyle = {
+        a:'label-default',
+        b:'label-default',
+        c:'label-default',
+        d:'label-default',
+        e:'label-default',
+      };
     }
 
-  };
+    this.flip();
+
+  }
 
   // this.handleFlipMC = function (ans) {
   //   console.log('MC Flip FN Called', ans, this.front, this.flipped);
