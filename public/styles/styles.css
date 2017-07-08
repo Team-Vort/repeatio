@@ -183,3 +183,7 @@ form > * {
   display: flex;
   align-items: center;
 }
+
+.panel {
+  border: 0px;
+}
