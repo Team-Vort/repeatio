@@ -148,7 +148,7 @@ router.post('/reset', function(req, res){
   UserFile.User.findOne({
     username: req.body.username
   }).then(function(user) {
-    if(user === null){
+    if(user !== null){
       bcrypt.genSalt(saltRounds, function(err, salt) {
         bcrypt.hash(req.body.password, salt, function(err, hash){
           if(err){

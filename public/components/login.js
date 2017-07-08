@@ -31,13 +31,13 @@ angular.module('flash-card')
     newPasswordConfirm = this.newPasswordConfirm;
     username = $scope.email;
     console.log($scope.email);
-    loginSvc.reset(username, resetCode, newPassword, function(res) {
-      if(this.newPassword !== this.newPasswordConfirm && res.data === "MATCH"){
+    loginSvc.reset(username, newPassword, resetCode, function(res) {
+      if(this.newPassword !== this.newPasswordConfirm){
         alert('Your passwords do not match; please check and try again.');
         that.newPassword = '';
         that.newPasswordConfirm = '';
-      }else if(this.newPassword === this.newPasswordConfirm && res.data = "MATCH"){
-
+      }else if(this.newPassword === this.newPasswordConfirm){
+        alert('The reset code is incorrect; please check and try again.')
       }
     })
 
@@ -107,6 +107,16 @@ angular.module('flash-card')
   this.signup = function(username, password, callback) {
     var url = 'http://localhost:3000/signup';
     $http.post(url, JSON.stringify({username: username, password:password}))
+      .then(function successCallback(response) {
+        callback(response);
+      },
+      function errorCallback(response) {
+        callback(response);
+      });
+  };
+  this.reset = function(username, newPassword, resetCode ,callback) {
+    var url = 'http://localhost:3000/reset';
+    $http.post(url, JSON.stringify({username: username, password: newPassword, resetcode: resetCode}))
       .then(function successCallback(response) {
         callback(response);
       },
