@@ -2,6 +2,10 @@ angular.module('flash-card')
 
 .controller('LoginCtrl', function(loginSvc, $location, $http, $scope, $rootScope){
   $scope.currentUserEmail;
+  this.showBadLogin = false;
+  this.showPleaseTry = false;
+  this.showEmailSent = false;
+
   this.login = function() {
     var that = this;
     loginName = this.loginName;
@@ -18,7 +22,7 @@ angular.module('flash-card')
           $location.path('/app');
         }, function(error) {console.error(error);});
       } else if (res.data === 'NO') {
-        alert('Incorrect username or password, please try again.');
+        that.showBadLogin = true;
         that.loginPw = '';
         $('#loginName').focus();
       }
@@ -83,24 +87,35 @@ angular.module('flash-card')
     });
   };
 
+  this.processForgotPassword = function() {
+    var isOk = $scope.forgotPassword();
+
+    this.showPleaseTry =  !isOk;
+    this.showEmailSent = isOk;
+  };
+
   $scope.show = false;
 
   $scope.resetCode;
   $scope.forgotPassword = function(){
 
     if($scope.currentUserEmail === undefined){
-      return alert("Please attempt to login with your email at least once.")
+      // return alert("Please attempt to login with your email at least once.")
+      return false;
     }
     $("body").css("cursor", "wait");
     $(".forgot-password").css("cursor", "wait");
     this.resetCode = Math.floor(Math.random() * 1000000);
     $scope.resetCode = this.resetCode;
+    var that = this;
     $http.post('http://localhost:3000/forgotpassword', JSON.stringify({email: $scope.currentUserEmail, resetCode: this.resetCode})).then(function(){
-        alert("A password reset code has been sent to " + $scope.currentUserEmail);
+        // alert("A password reset code has been sent to " + $scope.currentUserEmail);
+
         $("body").css("cursor", "auto");
         $(".forgot-password").css("cursor", "pointer");
         $scope.show = !$scope.show;
       })
+    return true;
     }
   })
 

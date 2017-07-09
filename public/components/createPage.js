@@ -74,8 +74,7 @@ angular.module('flash-card')
     console.log('populateCard was called in createPage.js')
     if(this.newDeck.cardType === 'basic') {
       if(!dataObj.question || !dataObj.answer) {
-        alert("Please fill out a card");
-        return;
+        return false;
       } else {
         this.newCard.data = {};
         this.newCard.data['question'] = dataObj['question'];
@@ -83,13 +82,14 @@ angular.module('flash-card')
 
         this.newCard.data.front = dataObj.front;
         this.newCard.data.back = dataObj.back;
+
+
       }
     }
 
     if(this.newDeck.cardType === 'multiple choice') {
       if(!dataObj.answer || !dataObj.question || !dataObj.options.a || !dataObj.options.b) {
-        alert("Please fill out required fields");
-        return;
+        return false;
       } else {
 
         //Make a copy of the object
@@ -105,9 +105,11 @@ angular.module('flash-card')
           }
         }
         console.log('multiple choice card about to be added to deck: ', this.newCard);
+
       }
     }
     this.addCard(this.newCard);
+    return true;
   }.bind(this);
 
   this.addCard = function(newCard) {
