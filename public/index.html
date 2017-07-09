@@ -61,14 +61,14 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a id="logo" class="navbar-brand" href="/app">Repeat.it</a>
+        <div id="logo" class="navbar-brand">Repeat.it</div>
       </div>
 
-      <div class="collapse navbar-collapse" id="my-navbar">
+      <div class="collapse navbar-collapse" id="my-navbar" ng-if="showNavOptions">
         <ul class="nav navbar-nav navbar-right">
           <li><a id="home-btn" href="/app">Home</a></li>
           <li><a id="create-btn" href="/create">Create a new deck</a></li>
-          <li><a id="logout-btn" href="/">Log out</a></li>
+          <li><a id="logout-btn" ng-click="turnOff()" href="/">Log out</a></li>
         </ul>
       </div>
     </div>

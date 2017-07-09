@@ -34,3 +34,29 @@ angular.module('flash-card', ['ngRoute'])
       });
   }
 ]);
+
+angular.module('flash-card')
+.run(function($rootScope, $location) {
+  $rootScope.showNavOptions = true;
+  $rootScope.turnOff = function(){
+    $rootScope.showNavOptions = false;
+  }
+  if($location.url() === '/'){
+    $rootScope.showNavOptions = !$rootScope.showNavOptions;
+  }
+})
+
+// angular.module('flash-card')
+
+// .controller('NavCtrl', function($scope, $location){
+
+//   // $scope.locationFinder = function(){
+//   //   if($location.url() === '/'){
+//   //     $scope.show = false;
+//   //     console.log("HOME")
+//   //   }else{
+//   //     $scope.show = true;
+//   //     console.log("ELSEWHERE")
+//   //   }
+//   // }
+// })
