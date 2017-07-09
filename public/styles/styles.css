@@ -187,3 +187,7 @@ form > * {
 .panel {
   border: 0px;
 }
+
+.change-photo-button {
+  .margin-top: 3px;
+}

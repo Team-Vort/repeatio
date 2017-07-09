@@ -21,6 +21,7 @@ angular.module('flash-card')
     this.card = {
       question: '',
       answer: '',
+      photo: '',
       correctOption: 'a',
       options: {
         a: '',

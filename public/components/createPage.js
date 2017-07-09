@@ -34,6 +34,10 @@ angular.module('flash-card')
         d: '',
         e: ''
       }
+    },
+    image: {
+      photo: '',
+      answer: ''
     }
   };
 
@@ -105,6 +109,20 @@ angular.module('flash-card')
           }
         }
         console.log('multiple choice card about to be added to deck: ', this.newCard);
+      }
+    }
+
+    if(this.newDeck.cardType === 'image') {
+      if(!dataObj.photo || !dataObj.answer) {
+        alert("Please fill out a card");
+        return;
+      } else {
+        this.newCard.data = {};
+        this.newCard.data['photo'] = dataObj['photo'];
+        this.newCard.data['answer'] = dataObj['answer'];
+
+        this.newCard.data.front = dataObj.front;
+        this.newCard.data.back = dataObj.back;
       }
     }
     this.addCard(this.newCard);
