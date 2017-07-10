@@ -12,8 +12,12 @@
 
     model.curCard = 1; // set current card number to 1 initially.
 
-    $scope.$on('onClickNext', function(event, data){
-      model.curCard = data;
+    $scope.$on('onClickNext', function(event, data) {
+      if(data === 0) {
+        model.curCard = 1;
+      } else {
+        model.curCard = data;
+      }
       console.log(data)
     })
 
