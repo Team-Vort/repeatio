@@ -38,6 +38,10 @@
       <card-multiple-choice populate-card="create.populateCard" editable="true" card="create.defaultCardData.multipleChoice" ng-show="create.newDeck.cardType === 'multiple choice'"/>
     </div>
 
+    <div class="card-type-div">
+      <card-image populate-card="create.populateCard" editable="true" card="create.defaultCardData.image" ng-show="create.newDeck.cardType === 'image'"/>
+    </div>
+
 
     <!-- Moved add card button to each card type controller -->
 
@@ -56,6 +60,10 @@
           <card-multiple-choice populate-card="create.populateCard" card="card.data" editable="true" hide-submit="true" ng-show="create.newDeck.cardType === 'multiple choice'"/>
         </div>
 
+        <div class="card-type-div">
+          <card-image-created populate-card="create.populateCard" card="card.data" editable="true" hide-submit="true"
+          ng-show="create.newDeck.cardType === 'image'"/>
+        </div>
 
 
         <button class="btn btn-danger" ng-click="create.deleteCard(card)">Delete card</button>

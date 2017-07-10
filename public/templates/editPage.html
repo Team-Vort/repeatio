@@ -19,6 +19,10 @@
     <card-multiple-choice editable="true" card="edit.defaultCardData.multipleChoice" ng-show="edit.deck.cardType === 'multiple choice'" populate-card="edit.populateCard"/>
   </div>
 
+  <div class="card-type-div">
+    <card-image editable="true" populate-card="edit.populateCard" card="edit.defaultCardData.image" ng-show="edit.deck.cardType === 'image'"/>
+  </div>
+
   <!-- OLD CODE- hard coded card front/back in this file.  Use new components. -->
    <!--  <div class="row"> -->
       <!-- Front of flashcard -->
@@ -52,6 +56,10 @@
         <card-multiple-choice editable="true" hide-submit="true" card="card.data" ng-show="edit.deck.cardType === 'multiple choice'"/>
       </div>
 
+      <div class="card-type-div">
+        <card-image-created card="card.data" editable="true" hide-submit="true"
+        ng-show="edit.deck.cardType === 'image'"/>
+      </div>
 
       <!-- OLD hard coded card DOM - use new components. -->
       <!-- <div class="row">

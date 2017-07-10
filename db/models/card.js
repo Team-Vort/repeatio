@@ -25,6 +25,7 @@ var CardSchema = new Schema({
     question: String,
     answer: String,
     correctOption: String,
+    photo: String,
     options: {
       a: String,
       b: String,

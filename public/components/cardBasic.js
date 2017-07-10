@@ -3,11 +3,13 @@ angular.module('flash-card')
   this.showSentMsg = false;
   this.showFieldsAlert = false;
 
+
   this.clearFields = function(ok) {
     if (ok) {
       this.card = {
         question: '',
         answer: '',
+        photo: '',
         correctOption: 'a',
         options: {
           a: '',
