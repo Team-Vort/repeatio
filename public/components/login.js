@@ -5,6 +5,7 @@ angular.module('flash-card')
   this.showBadLogin = false;
   this.showPleaseTry = false;
   this.showEmailSent = false;
+  this.showPassUpdated = false;
 
   this.login = function() {
     var that = this;
@@ -45,7 +46,7 @@ angular.module('flash-card')
         alert('The reset code is incorrect; please check and try again.')
         that.resetCode = '';
       }else if(res.data === "SUCCESS"){
-        alert("Your password has been updated.")
+        that.showPassUpdated = true;
         $scope.show = !$scope.show;
       }
     })
