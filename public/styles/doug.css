@@ -15,3 +15,13 @@
 .bad-pass {
   color: red;
 }
+
+.hover-green:hover{
+  background-color: #5CB85C !important;
+
+}
+
+.bg-green {
+  background-color: #5CB85C !important;
+  color: white;
+}
