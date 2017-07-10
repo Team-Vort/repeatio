@@ -8,3 +8,20 @@
   background-color: #F8F8F8;
 }
 
+.spacer-block {
+  height: 10px;
+}
+
+.bad-pass {
+  color: red;
+}
+
+.hover-green:hover{
+  background-color: #5CB85C !important;
+
+}
+
+.bg-green {
+  background-color: #5CB85C !important;
+  color: white;
+}

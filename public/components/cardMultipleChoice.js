@@ -4,6 +4,7 @@ angular.module('flash-card')
   this.back='null';
 
   this.showSentMsg = false;
+  this.showFieldsAlert = false;
   // this.dataObj = {
   //   question: 'Enter A question here',
   //   answer: 'Enter the message to be displayed for a correct answer here.',
@@ -17,20 +18,26 @@ angular.module('flash-card')
   //   }
   // };
 
-  this.clearFields = function() {
-    this.card = {
-      question: '',
-      answer: '',
-      photo: '',
-      correctOption: 'a',
-      options: {
-        a: '',
-        b: '',
-        c: '',
-        d: '',
-        e: ''
-      }
-    };
+  this.clearFields = function(ok) {
+    if (ok) {
+      this.card = {
+        question: '',
+        answer: '',
+        photo: '',
+        correctOption: 'a',
+        options: {
+          a: '',
+          b: '',
+          c: '',
+          d: '',
+          e: ''
+        }
+      };
+      this.toggleSentMsg();
+      this.showFieldsAlert = false;
+    } else {
+      this.showFieldsAlert = true;
+    }
   };
 
   this.setCorrectAnswer = function (ans) {
@@ -46,7 +53,7 @@ angular.module('flash-card')
       console.log('inner Toggle toggled', this.showSentMsg);
     }.bind(this);
 
-    setTimeout( innerToggle, 4000);
+    setTimeout( innerToggle, 2000);
 
   }.bind(this);
 })
