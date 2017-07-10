@@ -8,9 +8,7 @@
     <div class="card panel panel-default" ng-class="{'flipped':study.flipped}" ng-click="study.handleFlipBasic()">
       <div class="studycard face front panel-body" ng-if="study.front">
         <h3>{{ study.current.data.question }}</h3>
-      <div ng-show="study.deck.cardType === 'image'">
         <img ng-src="{{study.current.data.photo}}" max-height="100%" max-width="100%"/>
-      </div>
         <!-- Multiple Choice Options -->
         <div class="row text-center" ng-show="study.deck.cardType === 'multiple choice'">
           <h4>
