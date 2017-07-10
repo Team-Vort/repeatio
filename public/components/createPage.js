@@ -34,6 +34,10 @@ angular.module('flash-card')
         d: '',
         e: ''
       }
+    },
+    image: {
+      photo: '',
+      answer: ''
     }
   };
 
@@ -108,6 +112,20 @@ angular.module('flash-card')
 
       }
     }
+
+    if(this.newDeck.cardType === 'image') {
+      if(!dataObj.photo || !dataObj.answer) {
+        alert("Please fill out a card");
+        return;
+      } else {
+        this.newCard.data = {};
+        this.newCard.data['photo'] = dataObj['photo'];
+        this.newCard.data['answer'] = dataObj['answer'];
+
+        this.newCard.data.front = dataObj.front;
+        this.newCard.data.back = dataObj.back;
+      }
+    }
     this.addCard(this.newCard);
     return true;
   }.bind(this);
@@ -137,10 +155,11 @@ angular.module('flash-card')
       $http.post('/decks?username=' + localStorage.getItem('currentUser'), this.newDeck).then(function() {
         $http.get('/decks', {params: {username: localStorage.getItem('currentUser')}}).then(function(response) {
           localStorage.setItem('decks', JSON.stringify(response.data));
+          // console.log(JSON.stringify(response.data));
+          console.log('DECKS', JSON.parse(localStorage.getItem('decks')));
           $location.path('/app');
         }, function(err) {console.error('handleSave, CREATE', err);});
       });
-
     }
   };
 
