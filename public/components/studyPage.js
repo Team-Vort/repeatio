@@ -39,11 +39,11 @@ angular.module('flash-card')
 
   this.counter = 0;
 
-  $scope.$on('clickShuffle', function(event, data) {
+  $scope.$on('clickShuffle', function(event, data) { // capture the click from progress tracker component
     model.startOver();
   });
 
-  this.startOver = function () {
+  this.startOver = function () { // set the deck to initial state with a shuffle
     this.shuffledDeck = shuffleDeck(this.deck.cards);
     this.current = this.shuffledDeck[0];
     this.front = true;
@@ -51,7 +51,7 @@ angular.module('flash-card')
     this.theEnd = false;
     this.showPrev = false;
     this.counter = 0;
-    $scope.$broadcast('onClickNext', 0);
+    $scope.$broadcast('onClickNext', 0); // sets progress tracker to 0
   };
 
   var resetConditionToInitialState = {
