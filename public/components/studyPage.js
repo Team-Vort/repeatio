@@ -120,7 +120,7 @@ angular.module('flash-card')
   };
 
   this.handleFlipBasic = () => {
-    if (this.deck.cardType == 'basic') {
+    if (this.deck.cardType === 'basic' || this.deck.cardType === 'image') {
       this.flip();
     }
   };

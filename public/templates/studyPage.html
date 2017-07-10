@@ -8,15 +8,15 @@
     <div class="card panel panel-default" ng-class="{'flipped':study.flipped}" ng-click="study.handleFlipBasic()">
       <div class="studycard face front panel-body" ng-if="study.front">
         <h3>{{ study.current.data.question }}</h3>
-
+      <div ng-show="study.deck.cardType === 'image'">
+        <img ng-src="{{study.current.data.photo}}" max-height="100%" max-width="100%"/>
+      </div>
         <!-- Multiple Choice Options -->
         <div class="row text-center" ng-show="study.deck.cardType === 'multiple choice'">
           <h4>
             <span class="label" ng-class="study.answersStyle.a" ng-click="study.handleFlipMC('a')" ng-mouseenter="study.answersStyle.a = 'label-success'" ng-mouseleave="study.answersStyle.a = 'label-default'">{{'A: ' + study.current.data.options.a}}
             </span>
           </h4>
-
-
 
           <h4>
             <span class="label" ng-class="study.answersStyle.b" ng-mouseenter="study.answersStyle.b = 'label-success'" ng-mouseleave="study.answersStyle.b = 'label-default'" ng-click="study.handleFlipMC('b')">{{'B: ' + study.current.data.options.b}}

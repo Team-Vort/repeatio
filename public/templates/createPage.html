@@ -57,11 +57,12 @@
         </div>
 
         <div class="card-type-div">
-          <card-multiple-choice populate-card="create.populateCard" card="card.data" editable="true" hide-submit="true" ng-show="create.newDeck.cardType === 'multiple choice'"/>
+          <card-multiple-choice populate-card="create.populateCard" card="card.data" editable="true" hide-submit="true" ng-show="create.newDeck.cardType === 'multiple choice'; !newcard; created"/>
         </div>
 
         <div class="card-type-div">
-          <card-image populate-card="create.populateCard" card="card.data" editable="true" hide-submit="true" ng-show="create.newDeck.cardType === 'image'"/>
+          <card-image-created populate-card="create.populateCard" card="card.data" editable="true" hide-submit="true"
+          ng-show="create.newDeck.cardType === 'image'"/>
         </div>
 
 

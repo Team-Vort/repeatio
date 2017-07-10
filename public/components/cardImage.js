@@ -1,5 +1,11 @@
 angular.module('flash-card')
 .controller('CardImageCtrl', function() {
+  this.newImage = '';
+  this.change = {
+    input: true,
+    photo: false
+  };
+
   this.clearFields = function() {
   this.card = {
     question: '',
@@ -15,6 +21,12 @@ angular.module('flash-card')
     }
   };
   };
+
+  this.setImage = function(input) {
+    console.log(this);
+    console.log(input);
+    this.newImage = input;
+  }
 
 })
 

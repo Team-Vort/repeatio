@@ -1,31 +1,39 @@
-
+<!-- card if not yet created -->
 <div class="row">
   <div class="col-xs-5 flashcard">
     <h4>Question</h4>
     <hr>
-    <div>
-      <div ng-show="!input" class="ng-show">
-        <input  ng-model="$ctrl.card.photo" type="text" name="cardphoto" id="cardphoto" class="input-box form-control" placeholder="Web link for card image" required/>
+    <div >
+      <div ng-if="$ctrl.change.input" >
+        <input  ng-model="$ctrl.card.photo" type="url" class="input-box form-control" placeholder="Web link for card image" required/>
       </div>
-      <div ng-show="photo">
-        <img class="center-block"  src="https://upload.wikimedia.org/wikipedia/commons/3/35/Greek_-_Head_of_a_Maiden_-_Walters_23155.jpg" width="60%" />
-      </div>
-      <div class="upload-photo">
-      <!-- function on click? hides input field, displays image -->
-        <button class="btn btn-xs center-block change-photo-button" ng-show="!input" ng-click="photo=!photo; input=!input; $ctrl.poplateCard($ctrl.card)"> Add Image </button>
+      <!-- on click hides input field, displays image -->
+      <button class="btn btn-xs center-block change-photo-button" ng-if="$ctrl.change.input" ng-click="$ctrl.change.photo=true; $ctrl.change.input=false; $ctrl.setImage($ctrl.card.photo)"> Add Image </button>
+      <div ng-if="$ctrl.change.photo">
+        <img class="center-block" ng-src="{{$ctrl.newImage}}"  width="60%" />
       </div>
     </div>
   </div>
-
   <div class="col-xs-5 flashcard">
     <h4>Answer</h4>
     <hr>
     <textarea placeholder="Enter the answer" ng-model="$ctrl.card.answer"></textarea>
   </div>
 </div>
-  <div class="row text-center">
-    <button class="btn btn-primary" ng-show="!$ctrl.hideSubmit" ng-click="$ctrl.populateCard($ctrl.card); $ctrl.clearFields();">    Submit Card
-    </button>
-  </div>
+
+<div class="row text-center">
+  <button class="btn btn-primary" ng-show="!$ctrl.hideSubmit" ng-click="$ctrl.change.input=true; $ctrl.change.photo=false; $ctrl.populateCard($ctrl.card); $ctrl.clearFields();">    Submit Card
+  </button>
+</div>
+
+<!-- Warning to display after each card is added -->
+<!-- <div class="row text-center" ng-if="$ctrl.showSentMsg">
+  <h3>
+    <span class="label label-warning">
+      New Card Added to Deck!
+    </span>
+  </h3>
+</div> -->
 
 
+<!-- src="https://upload.wikimedia.org/wikipedia/commons/3/35/Greek_-_Head_of_a_Maiden_-_Walters_23155.jpg" -->

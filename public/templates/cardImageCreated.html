@@ -1,0 +1,13 @@
+  <!-- display question if card already created -->
+<div class="row">
+  <div class="col-xs-5 flashcard">
+    <div >
+        <img class="center-block" ng-src="{{$ctrl.card.photo}}">
+    </div>
+  </div>
+  <div class="col-xs-5 flashcard">
+    <h4>Answer</h4>
+    <hr>
+    <textarea placeholder="Enter the answer" ng-model="$ctrl.card.answer"></textarea>
+  </div>
+</div>
