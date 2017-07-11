@@ -6,6 +6,10 @@ angular.module('flash-card')
   this.showPleaseTry = false;
   this.showEmailSent = false;
   this.showPassUpdated = false;
+  this.incorrectCode = false;
+  this.passwordsDontMatch = false;
+  this.usernameTaken = false;
+  this.passwordsDontMatchSignUp = false;
 
   this.login = function() {
     var that = this;
@@ -39,11 +43,11 @@ angular.module('flash-card')
     username = $scope.currentUserEmail;
     loginSvc.reset(username, newPassword, userResetCode, systemResetCode, function(res) {
       if(this.newPassword !== this.newPasswordConfirm){
-        alert('Your passwords do not match; please check and try again.');
+        that.passwordsDontMatch = true;
         that.newPassword = '';
         that.newPasswordConfirm = '';
       }else if(this.newPassword === this.newPasswordConfirm && res.data === 'INCORRECT_CODE'){
-        alert('The reset code is incorrect; please check and try again.')
+        that.incorrectCode = true;
         that.resetCode = '';
       }else if(res.data === "SUCCESS"){
         that.showPassUpdated = true;
@@ -63,13 +67,13 @@ angular.module('flash-card')
     loginSvc.signup(accName, accPw, function(res) {
       $rootScope.showNavOptions = true;
       if (this.accPw !== this.accVerifyPw && res.data === 'NO') {
-        alert('Username taken; please try another username.');
+        that.usernameTaken = true;
         that.accName = '';
         that.accPw = '';
         that.accVerifyPw = '';
       }
       else if (this.accPw !== this.accVerifyPw) {
-        alert('Your passwords do not match; please check and try again.');
+        that.passwordsDontMatchSignUp = true;
         that.accPw = '';
         that.accVerifyPw = '';
       } else if (res.error) {
@@ -79,7 +83,7 @@ angular.module('flash-card')
         localStorage.setItem('decks', JSON.stringify([]));
         $location.path('/app');
       } else if (res.data === 'NO') {
-        alert('Username taken; please try another username.');
+        that.usernameTaken = true;
         that.accName = '';
         that.accPw = '';
         that.accVerifyPw = '';
@@ -101,7 +105,6 @@ angular.module('flash-card')
   $scope.forgotPassword = function(){
 
     if($scope.currentUserEmail === undefined){
-      // return alert("Please attempt to login with your email at least once.")
       return false;
     }
     $("body").css("cursor", "wait");
@@ -110,8 +113,6 @@ angular.module('flash-card')
     $scope.resetCode = this.resetCode;
     var that = this;
     $http.post('http://localhost:3000/forgotpassword', JSON.stringify({email: $scope.currentUserEmail, resetCode: this.resetCode})).then(function(){
-        // alert("A password reset code has been sent to " + $scope.currentUserEmail);
-
         $("body").css("cursor", "auto");
         $(".forgot-password").css("cursor", "pointer");
         $scope.show = !$scope.show;
