@@ -74,6 +74,49 @@
     </div>
   </div>
 
+  <!-- Show an alert if the reset code is incorrect -->
+  <div class="row text-center">
+    <div class="alert alert-danger alert-dismissible fade in" role="alert" ng-show="login.incorrectCode">
+      <button type="button" class="close" aria-label="Close" ng-click="login.incorrectCode = false;">
+        <span aria-hidden="true">×</span>
+      </button>
+      <strong>Bummer!  </strong>
+      {{'The reset code is incorrect; please check and try again.'}}
+    </div>
+  </div>
+
+  <!-- Show alert if the passwords do not match -->
+  <div class="row text-center">
+    <div class="alert alert-danger alert-dismissible fade in" role="alert" ng-show="login.passwordsDontMatch">
+      <button type="button" class="close" aria-label="Close" ng-click="login.passwordsDontMatch = false;">
+        <span aria-hidden="true">×</span>
+      </button>
+      <strong>Bummer!  </strong>
+      {{'Your passwords do not match; please check and try again.'}}
+    </div>
+  </div>
+
+  <!-- Show alert if the username is already taken -->
+  <div class="row text-center">
+    <div class="alert alert-danger alert-dismissible fade in" role="alert" ng-show="login.usernameTaken">
+      <button type="button" class="close" aria-label="Close" ng-click="login.usernameTaken = false;">
+        <span aria-hidden="true">×</span>
+      </button>
+      <strong>Bummer!  </strong>
+      {{'Username taken; please try another username.'}}
+    </div>
+  </div>
+
+  <!-- Show alert if the passwords do not match -->
+  <div class="row text-center">
+    <div class="alert alert-danger alert-dismissible fade in" role="alert" ng-show="login.passwordsDontMatchSignUp">
+      <button type="button" class="close" aria-label="Close" ng-click="login.passwordsDontMatchSignUp = false;">
+        <span aria-hidden="true">×</span>
+      </button>
+      <strong>Bummer!  </strong>
+      {{'Your passwords do not match; please check and try again.'}}
+    </div>
+  </div>
 
 </div>
 

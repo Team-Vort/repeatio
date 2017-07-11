@@ -70,3 +70,54 @@ node server.js
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines and ideas to extend the app.
+
+##############################################################
+    NEW CONTRIBUTIONS TO VERSION 2 README (LEGACY SPRINT):
+##############################################################
+
+## Team
+
+  - __Team Name__: Team Vort
+  - __Product Owner__: Himanshu Pant
+  - __Scrum Master__: Andrew Foresi
+  - __Development Team Members__: Doug Lyford, Semie Rogers
+
+## New Features
+
+- Password reset function
+    - Enter a randomly generated reset code sent to your email address to reset your account’s password
+
+- Deck categories
+    - New ability to categorize decks based on their subject
+    - Each category can have an unlimited amount of decks
+    - To create a new category or add a deck to an existing one, simply enter the proper deck name in the form when creating a new deck
+
+- Multiple choice card
+    - Can provide between 2-5 options for answers
+    - Only one answer can be selected as the “Correct” answer
+    - Dynamic card flip styled differently for correct/incorrect answer
+
+- Image cards
+    - Having image cards becomes effective for studying subjects with visual characteristics
+    - This new functionality still allows the user to include an answer on the back of the image card
+
+- Shuffle deck
+    - Studying cards in a repetitive order can be counter productive, this new feature allows the user to randomize the order in which cards will appear as they are studying
+
+- Progress tracker for iterating through the cards in a deck & start over function
+    - This feature makes it easy to determine which card you are currently studying in a deck or whether or not you have seen each card once
+    - After you have iterated through each card in the deck, you are given the option of starting over
+
+- New design and layout that is more user friendly
+    - Improvements were made on top of the styles and layout originally included in version 1
+    - The new layout makes it much easier for the user to logically determine where to navigate to on the current page to get a desired result
+
+
+## Developer Notes
+
+- Nodemailer sends emails from the server using the following Gmail account
+    - Email: repeatit8521475@gmail.com
+    - Password: admin1010
+    - You can access nodemailer from the route on line 176 pf routes.js
+
+
