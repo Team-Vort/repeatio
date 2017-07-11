@@ -202,3 +202,88 @@ form > * {
 .change-photo-button {
   .margin-top: 3px;
 }
+
+
+/*Doug*/
+
+.x-btn-card-type {
+  margin-bottom: 10px;
+}
+
+.card-area {
+  background-color: #F8F8F8;
+}
+
+.spacer-block {
+  height: 10px;
+}
+
+.bad-pass {
+  color: red;
+}
+
+.hover-green:hover{
+  background-color: #5CB85C !important;
+
+}
+
+.bg-green {
+  background-color: #5CB85C !important;
+  color: white;
+}
+
+/* Himanshu */
+.the-end-card {
+  position: relative;
+  margin: 0 auto;
+}
+.deck-finished-message {
+  color: green;
+}
+
+/*andrew */
+a {
+  color: white;
+  text-decoration: none;
+}
+
+a:hover {
+  color:white;
+}
+
+.deck-list-entry {
+  cursor: auto;
+}
+
+.choose-deck-table-titles {
+  color: black;
+  font-weight: bold;
+  font-size: 150%;
+}
+
+.forgot-password {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.deck-table {
+  cursor: auto;
+}
+
+.clickButton {
+  color: white;
+  text-decoration: none;
+}
+
+.deletekey:hover {
+  color: white;
+  text-decoration: underline;
+}
+
+.label {
+  cursor: pointer;
+}
+
+.category {
+  cursor: pointer;
+}
